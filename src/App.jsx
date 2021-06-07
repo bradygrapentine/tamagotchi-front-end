@@ -13,9 +13,15 @@ export function App() {
           <button className="graveyard">
             <Link to="/graveyard">Visit Graveyard</Link>
           </button>
-          <form>
-            <label>Create a New Pet: </label>
-            <input type="text" placeholder="New Pet's Name Here" />
+          <form action="">
+            <label for="petName">Create a New Pet: </label>
+            <input
+              type="text"
+              id="petName"
+              name="petName"
+              placeholder="New Pet's Name Here"
+            />
+            <br></br>
           </form>
           <h3>All Pets</h3>
           <ul>
