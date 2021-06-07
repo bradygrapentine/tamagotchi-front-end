@@ -10,3 +10,47 @@ body {
   margin: 0;
   min-height: 100%;
 }
+
+h1 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+p {
+  margin: 0.2rem;
+}
+
+button {
+  margin: 0.25rem;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0%;
+  margin: 0%;
+}
+
+.navBar {
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+li {
+  list-style: none;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
