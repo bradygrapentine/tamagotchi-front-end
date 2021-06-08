@@ -1,12 +1,73 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, Route, Switch } from 'react-router-dom'
+import axios from 'axios'
+import { PetList } from './components/PetList'
+import { PetPage } from './components/PetPage'
 
 export function App() {
-  // const []
+  // async function loadGraveyard() {
+  //   const response = await axios.get(
+  //     'https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets?graveyard=true'
+  //   )
+  //   if (response.status == 200) {
+  //   }
+  // }
 
+  // async function createPet() {
+  //   const response = await axios.post(
+  //     'https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets'
+  //   )
+  //   // Body: {"name": "Stevie"}
+  //   if (response.status == 200) {
+  //   }
+  // }
+  // async function feedPet() {
+  //   const response = await axios.post(
+  //     `https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets/${id}/Feedings`
+  //   )
+  //   //Body: {}
+  //   if (response.status == 200) {
+  //   }
+  // }
+  // async function scoldPet() {
+  //   const response = await axios.post(
+  //     `https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets/${id}/Scoldings`
+  //   )
+  //   //Body: {}
+  //   if (response.status == 200) {
+  //   }
+  // }
+  // async function playWithPet() {
+  //   const response = await axios.post(
+  //     `https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets/${id}/Playtimes`
+  //   )
+  //   //Body: {}
+  //   if (response.status == 200) {
+  //   }
+  // }
+
+  // async function deletePet() {
+  //   const response = await axios.delete(
+  //     `https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets/${id}`
+  //   )
+  //   if (response.status == 200) {
+  //   }
+  // }
+
+  // async function renamePet() {
+  //   const response = await axios.put(
+  //     `https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets/${id}`
+  //   )
+  //   // Body: {"id": 14,"name": "Stevie"}
+  //   if (response.status == 200) {
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   loadPets()
+  // }, [])
   return (
     <>
-      .
       <Switch>
         <Route exact path="/">
           <h1>Interact With Your Tamagotchi's!</h1>
@@ -14,149 +75,21 @@ export function App() {
             <Link to="/graveyard">Visit Graveyard</Link>
           </button>
           <form action="">
-            <label for="petName">Create a New Pet: </label>
+            <label htmlFor="petName">Create a New Pet: </label>
+            {/* htmlFor does something */}
             <input
               type="text"
               id="petName"
               name="petName"
               placeholder="New Pet's Name Here"
             />
-            <br></br>
+            {/* <br></br> */}
           </form>
           <h3>All Pets</h3>
-          <ul>
-            <li>
-              <div>
-                <p>Name: 1</p>
-                <p>Birthday: </p>
-                <p>Hunger Level: </p>
-                <p>Happiness Level: </p>
-                <button>
-                  <Link to="/1">Interact with 1</Link>
-                </button>
-              </div>
-            </li>
-            <li>
-              <div>
-                {' '}
-                <p>Name: 2</p>
-                <p>Birthday: </p>
-                <p>Hunger Level: </p>
-                <p>Happiness Level: </p>
-                <button>
-                  <Link to="/2">Interact with 2</Link>
-                </button>
-              </div>
-            </li>
-            <li>
-              <div>
-                {' '}
-                <p>Name: 3</p>
-                <p>Birthday: </p>
-                <p>Hunger Level: </p>
-                <p>Happiness Level: </p>
-                <button>
-                  <Link to="/3">Interact with 3</Link>
-                </button>
-              </div>
-            </li>
-            <li>
-              <div>
-                {' '}
-                <p>Name: 4 </p>
-                <p>Birthday: </p>
-                <p>Hunger Level: </p>
-                <p>Happiness Level: </p>
-                <button>
-                  <Link to="/4">Interact with 4</Link>
-                </button>
-              </div>
-            </li>
-          </ul>
+          <PetList />
         </Route>
-        <Route exact path="/1">
-          <h1>Interact With Your Tamagotchi's!</h1>
-          <button>
-            <Link to="/">Go Home</Link>
-          </button>
-          <div>
-            <p>Name: 1</p>
-            <p>Birthday: </p>
-            <p>Hunger Level: </p>
-            <p>Happiness Level: </p>
-            <p>Status: </p>
-            <p>Birthday: </p>
-            <p>Last Interaction: </p>
-            <section>
-              <button>Play Pet</button>
-              <button>Scold Pet</button>
-              <button>Feed Pet</button>
-            </section>
-            <button className="delete">Delete Pet</button>
-          </div>{' '}
-        </Route>
-        <Route exact path="/2">
-          <h1>Interact With Your Tamagotchi's!</h1>
-          <button>
-            <Link to="/">Go Home</Link>
-          </button>
-          <div>
-            <p>Name: 2</p>
-            <p>Birthday: </p>
-            <p>Hunger Level: </p>
-            <p>Happiness Level: </p>
-            <p>Status: </p>
-            <p>Birthday: </p>
-            <p>Last Interaction: </p>
-            <section>
-              <button>Play Pet</button>
-              <button>Scold Pet</button>
-              <button>Feed Pet</button>
-            </section>
-            <button className="delete">Delete Pet</button>
-          </div>{' '}
-        </Route>
-        <Route exact path="/3">
-          <h1>Interact With Your Tamagotchi's!</h1>
-          <button>
-            <Link to="/">Go Home</Link>
-          </button>
-          <div>
-            <p>Name: 1</p>
-            <p>Birthday: </p>
-            <p>Hunger Level: </p>
-            <p>Happiness Level: </p>
-            <p>Status: </p>
-            <p>Birthday: </p>
-            <p>Last Interaction: </p>
-            <section>
-              <button>Play Pet</button>
-              <button>Scold Pet</button>
-              <button>Feed Pet</button>
-            </section>
-            <button className="delete">Delete Pet</button>
-          </div>{' '}
-        </Route>
-        <Route exact path="/4">
-          <h1>Interact With Your Tamagotchi's!</h1>
-          <button>
-            <Link to="/">Go Home</Link>
-          </button>
-          <div>
-            <p>Name: 4</p>
-            <p>Birthday: </p>
-            <p>Hunger Level: </p>
-            <p>Happiness Level: </p>
-            <p>Status: </p>
-            <p>Birthday: </p>
-            <p>Last Interaction: </p>
-            <section>
-              <button>Play Pet</button>
-              <button>Scold Pet</button>
-              <button>Feed Pet</button>
-            </section>
-            <button className="delete">Delete Pet</button>
-          </div>{' '}
+        <Route exact path="/:id">
+          <PetPage />
         </Route>
         <Route exact path="/graveyard">
           <h4>Please Scroll Quietly</h4>
