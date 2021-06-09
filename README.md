@@ -74,7 +74,13 @@
 
     - Add a user interface on the home page to sort your pets by their name, hunger level, or happiness level.
 
-<!-- close but no cigar -->
+<!-- DONE -->
+<!-- add reverse order button and reverse to state to toggle between ascending and descending -->
+
+<!-- DONE -->
+
+<!-- Jump into back end and add death date, expand on causes of death -->
+<!-- Ask about updating page with user action -->
 
 <!----------------------------->
 <!----------------------------->

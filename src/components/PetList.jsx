@@ -12,30 +12,34 @@ export function PetList() {
       'https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets'
     )
     if (response.status == 200) {
-      console.log(response.data)
       setPets(response.data)
     }
   }
 
+  function reverseOrder() {
+    let reversedPets = [...pets].reverse()
+    setPets(reversedPets)
+  }
+
   function sortByName() {
-    const sortedByName = pets.sort((petA, petB) =>
+    let newPets = [...pets].sort((petA, petB) =>
       petA.name.toLowerCase().localeCompare(petB.name.toLowerCase())
     )
-    setPets(sortedByName)
+    setPets(newPets)
     console.log(pets.map(pet => pet.name))
   }
   function sortByHappinessLevel() {
-    const sortedByHappiness = pets.sort(
-      (petA, petB) => Number(petB.happinessLevel) - Number(petA.happinessLevel)
+    let newPets = [...pets].sort(
+      (petA, petB) => Number(petA.happinessLevel) - Number(petB.happinessLevel)
     )
-    setPets(sortedByHappiness)
+    setPets(newPets)
     console.log(pets.map(pet => pet.happinessLevel))
   }
   function sortByHungerLevel() {
-    const sortedByHunger = pets.sort(
+    let newPets = [...pets].sort(
       (petA, petB) => Number(petA.hungerLevel) - Number(petB.hungerLevel)
     )
-    setPets(sortedByHunger)
+    setPets(newPets)
     console.log(pets.map(pet => pet.hungerLevel))
   }
 
@@ -49,15 +53,7 @@ export function PetList() {
       loadPets()
     }
     setNewName('')
-    console.log(pets)
   }
-
-  // useEffect(
-  //   function () {
-  //     PetList()
-  //   },
-  //   [pets]
-  // )
 
   useEffect(function () {
     loadPets()
@@ -93,15 +89,16 @@ export function PetList() {
       </form>
       <section>
         <button onClick={sortByName}>Sort By Name</button>
-        <button onClick={sortByHungerLevel}>Sort By Hunger </button>
-        <button onClick={sortByHappinessLevel}>Sort By Happiness </button>
+        <button onClick={sortByHungerLevel}>Sort By Hunger</button>
+        <button onClick={sortByHappinessLevel}>Sort By Happiness</button>
+        <button onClick={reverseOrder}>Reverse Order</button>
       </section>
       <h3>All Pets</h3>
       <ul>
         {pets
-          .sort((petA, petB) =>
-            petA.name.toLowerCase().localeCompare(petB.name.toLowerCase())
-          )
+          // .sort((petA, petB) =>
+          //   petA.name.toLowerCase().localeCompare(petB.name.toLowerCase())
+          // )
           .filter(pet => pet.name.toLowerCase().includes(newSearch))
           .map(function (pet) {
             return (

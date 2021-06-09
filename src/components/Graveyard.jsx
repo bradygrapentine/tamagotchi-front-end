@@ -11,13 +11,12 @@ export function Graveyard() {
     )
     if (response.status == 200) {
       console.log(response.data)
+      response.data.sort((petA, petB) =>
+        petA.name.toLowerCase().localeCompare(petB.name.toLowerCase())
+      )
       setDeadPets(response.data)
     }
   }
-
-  // useEffect(function () {
-  //   loadDeadPets()
-  // }, [deadPets])
 
   useEffect(function () {
     loadDeadPets()
@@ -30,25 +29,21 @@ export function Graveyard() {
         These pets deserve the respect they didn't receive when they were alive
       </p>
       <ul>
-        {deadPets
-          .sort((petA, petB) =>
-            petA.name.toLowerCase().localeCompare(petB.name.toLowerCase())
+        {deadPets.map(function (deadPet) {
+          return (
+            <li>
+              <div>
+                <p>Name: {deadPet.name}</p>
+                {/* <p>Birthday: {deadPet.birthday}</p> */}
+                <p>
+                  Cause of Death:{' '}
+                  {deadPet.hungerLevel >= 15 ? 'Hunger' : 'Negligence'}
+                </p>
+                {/* <p>Last Day: </p> */}
+              </div>
+            </li>
           )
-          .map(function (deadPet) {
-            return (
-              <li>
-                <div>
-                  <p>Name: {deadPet.name}</p>
-                  {/* <p>Birthday: {deadPet.birthday}</p> */}
-                  <p>
-                    Cause of Death:{' '}
-                    {deadPet.hungerLevel >= 15 ? 'Hunger' : 'Negligence'}
-                  </p>
-                  {/* <p>Last Day: </p> */}
-                </div>
-              </li>
-            )
-          })}
+        })}
       </ul>
       <button>
         <Link to="/">Click to Run From Guilt</Link>

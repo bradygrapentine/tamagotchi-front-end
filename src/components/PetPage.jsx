@@ -17,7 +17,7 @@ export function PetPage() {
 
   const params = useParams()
   // @ts-ignore
-  const id = params.id // { id: 42 }        id variable = 42
+  const id = params.id
   const history = useHistory()
 
   async function deletePet() {
@@ -86,10 +86,6 @@ export function PetPage() {
       console.log(response.data)
     }
   }
-
-  useEffect(() => {
-    getPet()
-  }, [id]) //
 
   useEffect(() => {
     async function getPet() {
