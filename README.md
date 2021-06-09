@@ -48,150 +48,108 @@
 
     - Add a user interface on the home page to sort your pets by their name, hunger level, or happiness level.
 
-  <!-- class Program 
-    {
-        static async Task GetPets()
+<!----------------------------->
+<!----------------------------->
+
+GET
+https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets
+
+No Body
+
+<!----------------------------->
+<!----------------------------->
+
+GET
+https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets?graveyard=true
+
+No Body
+
+<!----------------------------->
+<!----------------------------->
+
+POST
+https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets
+
+Body: {"name": "Stevie"}
+
+<!----------------------------->
+<!----------------------------->
+
+GET
+https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets/{id}
+
+No Body
+
+<!----------------------------->
+<!----------------------------->
+
+POST
+https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets/{id}/Playtimes
+
+Body: {}
+
+<!----------------------------->
+<!----------------------------->
+
+POST
+https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets/{id}/Feedings
+
+Body: {}
+
+<!----------------------------->
+<!----------------------------->
+
+Create Scolding:
+POST
+https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets/{id}/Scoldings
+
+Body: {}
+
+<!----------------------------->
+<!----------------------------->
+
+Delete Pet:
+DELETE
+https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets/{id}
+
+No Body
+
+<!----------------------------->
+<!----------------------------->
+
+Rename Pet:
+PUT
+https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets/{id}
+
+Body: {"id": 14,"name": "Stevie"}
+
+<!----------------------------->
+
+  <!-- 
+  public class Pet
+    { // add JSON properties
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public DateTime Birthday { get; set; }
+        public int HungerLevel { get; set; }
+        public int HappinessLevel { get; set; }
+        public DateTime LastInteractedWithDate { get; set; }
+        public Boolean IsDead
         {
-            var url = "http://localhost:5000/api/Pets";
-            var client = new HttpClient();
-            var allPetsAsStream = await client.GetStreamAsync(url);
-            var allPets = await System.Text.Json.JsonSerializer.DeserializeAsync<List<Pet>>(allPetsAsStream);
-            Console.WriteLine();
-            foreach (var pet in allPets)
+            get
             {
-                Console.WriteLine(pet.Description());
-            }
-            Console.WriteLine();
-        }
-
-        static async Task GetDeadPets()
-        {
-            var url = "http://localhost:5000/api/Pets?graveyard=true";
-            var client = new HttpClient();
-            var allPetsAsStream = await client.GetStreamAsync(url);
-            var allPets = await System.Text.Json.JsonSerializer.DeserializeAsync<List<Pet>>(allPetsAsStream);
-            Console.WriteLine();
-            foreach (var pet in allPets)
-            {
-                Console.WriteLine(pet.Description());
-            }
-            Console.WriteLine();
-        }
-
-        static async Task PostPet()
-        {
-            //{"name": "Stevie"} String input for posting
-            var client = new HttpClient();
-            Console.Write("What is the name of your new pet? ");
-            var name = Console.ReadLine();
-            var newPet = new Pet();
-            newPet.Name = name;
-            var jsonBody = JsonSerializer.Serialize(newPet);
-            var jsonBodyAsContent = new StringContent(jsonBody);
-            jsonBodyAsContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var url = "http://localhost:5000/api/Pets";
-            var response = await client.PostAsync(url, jsonBodyAsContent);
-        }
-
-        static async Task<Pet> GetPet(string id)
-        {
-            var client = new HttpClient();
-            if (id != null)
-            {
-                var url = $"http://localhost:5000/api/Pets/{id}";
-                var petAsStream = await client.GetStreamAsync(url);
-                var pet = await System.Text.Json.JsonSerializer.DeserializeAsync<Pet>(petAsStream);
-                return pet;
-            }
-            else
-            {
-                return null;
+                if (LastInteractedWithDate.AddDays(3) <= DateTime.Now || HungerLevel >= 15)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
-
-        static async Task CreatePlaytime()
+        public string Description()
         {
-            Console.Write("What is the id of the pet that you'd like to play with? ");
-            var id = Console.ReadLine();
-            var client = new HttpClient();
-            var newPlaytime = "{}";
-            var jsonBody = JsonSerializer.Serialize(newPlaytime);
-            var jsonBodyAsContent = new StringContent(jsonBody);
-            jsonBodyAsContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var url = $"http://localhost:5000/api/Pets/{id}/Playtimes";
-            var response = await client.PostAsync(url, jsonBodyAsContent);
+            return $"{Id}: Name ~ {Name} Happiness Level ~ {HappinessLevel} Hunger Level ~ {HungerLevel} Birthday ~ {Birthday} Last Interaction Date ~ {LastInteractedWithDate} Dead? ~ {IsDead}";
         }
-
-        static async Task CreateFeeding()
-        {
-            Console.Write("What is the id of the pet that you'd like to feed? ");
-            var id = Console.ReadLine();
-            var client = new HttpClient();
-            var newFeeding = "{}";
-            var jsonBody = JsonSerializer.Serialize(newFeeding);
-            var jsonBodyAsContent = new StringContent(jsonBody);
-            jsonBodyAsContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var url = $"http://localhost:5000/api/Pets/{id}/Feedings";
-            var response = await client.PostAsync(url, jsonBodyAsContent);
-        }
-
-        static async Task CreateScolding()
-        {
-            Console.Write("What is the id of the pet that you'd like to scold? ");
-            var id = Console.ReadLine();
-            var client = new HttpClient();
-            var newScolding = "{}";
-            var jsonBody = JsonSerializer.Serialize(newScolding);
-            var jsonBodyAsContent = new StringContent(jsonBody);
-            jsonBodyAsContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var url = $"http://localhost:5000/api/Pets/{id}/Scoldings";
-            var response = await client.PostAsync(url, jsonBodyAsContent);
-        }
-
-        static async Task DeletePet()
-        {
-            var client = new HttpClient();
-            Console.Write("What is the id of the pet that you'd like to delete? ");
-            var id = Console.ReadLine();
-            var url = $"http://localhost:5000/api/Pets/{id}";
-            var response = await client.DeleteAsync(url);
-        }
-
-        static async Task RenamePet()
-        {
-            //{"id": 14,"name": "Stevie"} String input for renaming
-            Console.Write("What is the id of the pet that you'd like to rename? ");
-            var id = Console.ReadLine();
-            Console.WriteLine();
-            Pet updatedPet = await GetPet(id);
-            Console.Write("What is the pet's new name? ");
-            var name = Console.ReadLine();
-            Console.WriteLine();
-            var client = new HttpClient();
-            updatedPet.Name = name;
-            var jsonBody = JsonSerializer.Serialize(updatedPet);
-            var jsonBodyAsContent = new StringContent(jsonBody);
-            jsonBodyAsContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var url = $"http://localhost:5000/api/Pets/{id}";
-            var response = await client.PutAsync(url, jsonBodyAsContent);
-        }
-
-        static string Menu()
-        {
-            Console.Clear();
-            Console.WriteLine();
-            Console.WriteLine("What would you like to do?");
-            Console.WriteLine("(SL) See living pets");
-            Console.WriteLine("(SD) See dead pets");
-            Console.WriteLine("(C)reate new pet");
-            Console.WriteLine("(P)lay with a pet (must know pet ID)");
-            Console.WriteLine("(F)eed a pet (must know pet ID)");
-            Console.WriteLine("(S)cold a pet (must know pet ID)");
-            Console.WriteLine("(R)ename a pet(must know pet ID");
-            Console.WriteLine("(D)elete a pet(must know pet ID");
-            Console.WriteLine("(Q) Quit the application");
-            Console.WriteLine();
-            Console.Write("Select an option and press Enter: ");
-            var choice = Console.ReadLine().ToUpper();
-            return choice.ToUpper();
-        } -->
+    }
