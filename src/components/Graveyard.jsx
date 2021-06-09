@@ -30,21 +30,25 @@ export function Graveyard() {
         These pets deserve the respect they didn't receive when they were alive
       </p>
       <ul>
-        {deadPets.map(function (deadPet) {
-          return (
-            <li>
-              <div>
-                <p>Name: {deadPet.name}</p>
-                {/* <p>Birthday: {deadPet.birthday}</p> */}
-                <p>
-                  Cause of Death:{' '}
-                  {deadPet.hungerLevel >= 15 ? 'Hunger' : 'Negligence'}
-                </p>
-                {/* <p>Last Day: </p> */}
-              </div>
-            </li>
+        {deadPets
+          .sort((petA, petB) =>
+            petA.name.toLowerCase().localeCompare(petB.name.toLowerCase())
           )
-        })}
+          .map(function (deadPet) {
+            return (
+              <li>
+                <div>
+                  <p>Name: {deadPet.name}</p>
+                  {/* <p>Birthday: {deadPet.birthday}</p> */}
+                  <p>
+                    Cause of Death:{' '}
+                    {deadPet.hungerLevel >= 15 ? 'Hunger' : 'Negligence'}
+                  </p>
+                  {/* <p>Last Day: </p> */}
+                </div>
+              </li>
+            )
+          })}
       </ul>
       <button>
         <Link to="/">Click to Run From Guilt</Link>

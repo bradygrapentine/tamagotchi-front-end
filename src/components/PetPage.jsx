@@ -89,7 +89,7 @@ export function PetPage() {
 
   useEffect(() => {
     getPet()
-  }, [id])
+  }, [id]) //
 
   useEffect(() => {
     async function getPet() {

@@ -8,31 +8,49 @@
 
     - Have fun with the styling. Make your CSS neat and presentable, but apply your creativity!
 
+
+
     - The home page should show a list of all the pets in your API. The listing should include their name, birthday, hunger level, and happiness level.
 
+<!-- DONE     -->
+
     - Add a form to your home page to input a new pet's name and use your "CREATE" API to make a new pet. The list of pets should refresh.
-    +
+
+<!-- DONE     -->
 
     - Make each pet on the home page a <Link> to a page showing the pet's detail. The detail page should show the name, birthday, hunger level, and happiness level.
-    +
+
+<!-- DONE     -->
 
     - On the detail page, add buttons to:
      -  Play with the pet
      +
+
+<!-- DONE     -->
+
      -  Feed the pet
-     +
+
+<!-- DONE     -->
+
      -  Scold the pet
-     +
+
+<!-- DONE     -->
 
     - After each of the above actions, reload the data for the pet (use React to do this, NOT a force page reload)
 
+<!-- DONE     -->
+
     - Add a button to delete a pet. After deletion, redirect the user to the home page
-    +
+
+<!-- DONE     -->
 
     - Add a link on the detail page to navigate to the home page.
-    +
+
+<!-- DONE     -->
 
     - DEPLOY your front end and test it on your netlify version.
+
+<!-- DONE     -->
 
     - SHARE it with friends and brag about how you created the entire code for this.
 
@@ -40,13 +58,23 @@
 
     - Add some new fields to your pet. Perhaps a string-based URL of an image of the pet to display beside its name.
 
+    -> Daily Kitteh API
+
     - Add a "search" field on the home page. When the user types in that field, dynamically update the pet list only to include pets whose name includes the input text.
 
+<!-- DONE     -->
+
     - Ensure the pets on the home page are sorted by their NAMES. You could implement this in the FRONT END or the BACK END.
+
+    (Look into localeCompare and sort info in sdg quick reference guide)
+
+<!-- DONE     -->
 
 <!-- Epic Mode -->
 
     - Add a user interface on the home page to sort your pets by their name, hunger level, or happiness level.
+
+<!-- close but no cigar -->
 
 <!----------------------------->
 <!----------------------------->
