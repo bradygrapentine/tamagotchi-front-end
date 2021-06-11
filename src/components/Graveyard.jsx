@@ -2,6 +2,10 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
+// format graveyard plot so grass covers everything but sky header
+// sort graveyard entries by name
+// add loading content
+
 export function Graveyard() {
   const [deadPets, setDeadPets] = useState([])
 
@@ -24,30 +28,36 @@ export function Graveyard() {
 
   return (
     <>
-      <h4>Please Scroll Quietly</h4>
+      <header>
+        <h4>Please Scroll Quietly</h4>
+        <p> ☁️ ☁️ ☁️ ☁️ ☁️</p>
+      </header>
       <p>
         These pets deserve the respect they didn't receive when they were alive
       </p>
-      <ul>
-        {deadPets.map(function (deadPet) {
-          return (
-            <li>
-              <div>
-                <p>Name: {deadPet.name}</p>
-                {/* <p>Birthday: {deadPet.birthday}</p> */}
-                <p>
-                  Cause of Death:{' '}
-                  {deadPet.hungerLevel >= 15 ? 'Hunger' : 'Negligence'}
-                </p>
-                {/* <p>Last Day: </p> */}
-              </div>
-            </li>
-          )
-        })}
-      </ul>
-      <button>
-        <Link to="/">Click to Run From Guilt</Link>
-      </button>
+      <article className="graveyardPlot">
+        <ul>
+          {deadPets.map(function (deadPet) {
+            return (
+              <li className="headStone">
+                <div>
+                  <p className="engraving">Name: {deadPet.name}</p>
+                  {/* <p>Birthday: {deadPet.birthday}</p> */}
+                  <p className="engraving">
+                    Cause of Death:{' '}
+                    {deadPet.hungerLevel >= 15 ? 'Hunger' : 'Negligence'}
+                  </p>
+                  {/* <p>Last Day: </p> */}
+                </div>
+              </li>
+            )
+          })}
+        </ul>
+        <Link to="/">
+          {' '}
+          <button className="graveyardtoHome">Click to Run From Guilt </button>
+        </Link>
+      </article>
     </>
   )
 }

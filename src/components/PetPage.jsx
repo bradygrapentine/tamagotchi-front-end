@@ -2,6 +2,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
 
+// address issue when pet dies and redirect user to home page
+// add loading content
 export function PetPage() {
   const [pet, setPet] = useState({
     id: '',
@@ -87,26 +89,13 @@ export function PetPage() {
     }
   }
 
-  function formatBirthdayPage(bdayAsString) {
-    let truncBday = bdayAsString.slice(0, 10).split('-').reverse()
-    const [day, month, year] = truncBday
-    let truncBdayString = [month, day, year].join('/')
-    truncBdayString =
-      truncBdayString[0] === '0'
-        ? truncBdayString.slice(1, 10)
-        : truncBdayString
-    return truncBdayString
-  }
-  // format single digit months and eliminate one of these fn's
-  function formatLastInteractedWithDatePage(lastDateAsString) {
-    let truncLast = lastDateAsString.slice(0, 10).split('-').reverse()
-    const [day, month, year] = truncLast
-    let truncLastString = [month, day, year].join('/')
-    truncLastString =
-      truncLastString[0] === '0'
-        ? truncLastString.slice(1, 10)
-        : truncLastString
-    return truncLastString
+  function formatDate(dateAsString) {
+    let truncDate = dateAsString.slice(0, 10).split('-').reverse()
+    let [day, month, year] = truncDate
+    day = day[0] === '0' ? (day = day[1]) : (day = day)
+    let dateString = [month, day, year].join('/')
+    dateString = dateString[0] === '0' ? dateString.slice(1, 10) : dateString
+    return dateString
   }
 
   useEffect(() => {
@@ -117,8 +106,6 @@ export function PetPage() {
       if (response.status == 200) {
         setPet(response.data)
         console.log(response.data)
-        // formatBirthday(response.data.birthday)
-        // formatLastInteractedWithDate(response.data.lastInteractedWithDate)
       }
     }
     getPet()
@@ -127,25 +114,15 @@ export function PetPage() {
   return (
     <>
       <Link to="/">
-        <h2>Interact With Your Katagotchi's!</h2>
+        <h2 className="petPage">Interact With Your Katagotchi's!</h2>
       </Link>
-      <div>
-        {/* Object 
-        { id: 9, name: "steven", 
-        birthday: "2021-06-08T22:36:10.990741", hungerLevel: 6, 
-        happinessLevel: 16, 
-        lastInteractedWithDate: "2021-06-09T18:07:00.842122", 
-        isDead: false }
-         */}
+      <div className="petPage">
         <p>Name: {pet.name}</p>
-        <p>Birthday: {formatBirthdayPage(pet.birthday)}</p>{' '}
+        <p>Birthday: {formatDate(pet.birthday)}</p>{' '}
         <p>Hunger Level: {pet.hungerLevel}</p>
         <p>Happiness Level: {pet.happinessLevel}</p>
         <p>Status: Alive</p>
-        <p>
-          Last Interaction:{' '}
-          {formatLastInteractedWithDatePage(pet.lastInteractedWithDate)}
-        </p>
+        <p>Last Interaction: {formatDate(pet.lastInteractedWithDate)}</p>
         <section>
           <button onClick={playWithPet}>Play With Pet</button>
           <button onClick={scoldPet}>Scold Pet</button>
@@ -167,9 +144,9 @@ export function PetPage() {
         </form>
       </div>{' '}
       <section className="filler"></section>
-      <footer>
-        <Link to="/">Back to Pet List</Link>
-      </footer>
+      <Link to="/">
+        <footer>Back to Pet List </footer>
+      </Link>
     </>
   )
 }

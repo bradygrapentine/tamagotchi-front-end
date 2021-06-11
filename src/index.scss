@@ -16,7 +16,13 @@ html {
   padding: 0rem;
 }
 
-footer {
+.graveyardtoHome {
+  padding: 0.5rem;
+}
+
+.graveyardtoHome:hover {
+  transform: scale(1.25, 1.25);
+  padding: 0.75rem;
 }
 
 body {
@@ -24,19 +30,35 @@ body {
   min-height: 100%;
   margin: 0rem;
   padding: 0rem;
+  background-color: rgb(24, 127, 196, 255);
 }
 
 h2 {
   text-align: center;
-  border-bottom: 1px solid black;
+  box-shadow: 0px 0px 6px 13px rgb(74, 185, 168);
+  color: white;
   width: 100%;
   padding: 0.5rem;
   margin: 0rem;
   margin-bottom: 2rem;
+  background-color: rgb(74, 185, 168, 255);
 }
 
-.graveyard {
-  margin-bottom: 1rem;
+.petPage:hover {
+  // color: rgb(132, 91, 165, 255);
+  border-top: 10px solid rgb(74, 185, 168, 255);
+  border-bottom: 10px solid rgb(74, 185, 168, 255);
+}
+
+.visitGraveyard {
+  margin: 3rem 0rem 0.5rem 0rem;
+  border: 0;
+  color: white;
+  padding: 0.5rem;
+}
+
+.visitGraveyard:hover {
+  transform: scale(1.25, 1.25);
 }
 
 h3 {
@@ -50,22 +72,26 @@ p {
 }
 
 form {
-  margin: 0;
+  margin: 0.5rem 1rem;
   text-align: center;
   display: flex;
   align-items: center;
-  padding-bottom: 1rem;
+  // padding-bottom: 1rem;
 }
 
 button {
   margin: 0.25rem;
   font-family: 'Press Start 2P', cursive;
-  // font-size: 14px;
+  color: white;
+  background-color: rgb(255, 120, 163);
+  border-radius: 1rem;
+  border: 0;
+  // box-shadow: 0px 0px 3px 8px rgba(24, 127, 196); // font-size: 14px;
 }
 
 a {
-  color: black;
   text-decoration: none;
+  max-width: fit-content;
 }
 
 div {
@@ -81,7 +107,7 @@ ul {
   justify-content: flex-start;
   align-items: center;
   padding: 0%;
-  margin: 0%;
+  margin: 0.5rem;
 }
 
 .navBar {
@@ -91,7 +117,7 @@ ul {
 
 li {
   list-style: none;
-  border: 1px solid black;
+  border: 1px solid;
   border-radius: 0.5rem;
   margin-bottom: 1rem;
 }
@@ -106,11 +132,10 @@ li {
   // width: 10rem;
   // color: rgb(0, 104, 5);
   // height: 1rem;
-  border: 3.5px solid;
-  padding: 0.25rem;
-  margin: 0.5rem;
-  border: 1px solid black;
-  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  // border: 15px solid rgb(235, 80, 129, 255);
+  border-radius: 1.5rem;
   // border-right-color: rgb(133, 133, 133);
   // border-bottom-color: rgb(133, 133, 133);
   // border-left-color: white;
@@ -118,24 +143,111 @@ li {
   // background-color: rgb(201, 201, 201);
   // text-align: center;
   font-size: 1rem;
-  min-width: 8.5rem;
+  min-width: 18rem;
+  // box-shadow: 0px 0px 6px 10px rgb(74, 185, 168);
+}
+
+.sortButton {
+  border: 0;
+  padding: 0.5rem;
+}
+
+.sortButton:hover {
+  transform: scale(1.25, 1.25);
+  padding: 0.75rem;
 }
 
 section {
   text-align: center;
-  // background-color: ;
+  background-color: rgb(74, 185, 168, 255);
+  color: white;
+}
+
+li.petList {
+  margin: 1rem 0rem;
+  border-top-left-radius: 10rem;
+  border-top-right-radius: 10rem;
+  border-bottom-left-radius: 5rem;
+  border-bottom-right-radius: 5rem;
+  border-width: 2rem;
+  border-color: rgb(74, 185, 168, 255);
+  background-color: white;
+  color: rgb(24, 127, 196, 255);
+}
+
+button.petList {
+  display: flex;
+  border: 0;
+  width: fit-content;
+  border-radius: 5rem;
+  background-color: rgb(255, 120, 163);
+  color: white;
+  padding: 0.5rem;
+}
+
+button.petList:hover {
+  color: rgb(24, 127, 196, 255);
+  cursor: pointer;
+}
+
+.headStone {
+  margin: 1rem 0rem;
+  border-top-left-radius: 10rem;
+  border-top-right-radius: 10rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  // border: 0;
+  line-height: 2rem;
+  border: 5px solid grey;
+  max-width: 15rem;
+  background-color: darkgrey;
+  min-height: 15rem;
+  padding: 2rem;
+}
+
+article {
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  p {
+    font-size: 2.5rem;
+  }
+}
+
+.engraving {
+  background-color: rgb(152, 152, 152);
+  border-radius: 1rem;
+  border: 1px solid grey;
+  padding: 1rem;
+}
+
+.graveyardPlot {
+  width: 100vh;
+  height: auto;
+  background-color: green;
+}
+
+label {
+  color: white;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 6px 10px rgb(74, 185, 168);
+  background-color: rgb(74, 185, 168, 255);
+  font-weight: 600;
 }
 
 .dropdown-content {
+  // background-color: rgb(74, 185, 168, 255);
   display: none;
   // position: absolute;
   // right: 50%;
-  margin: 0px;
   // background-color: rgb(201, 201, 201);
   min-width: 5rem;
   // width: fit-content;
   // box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
-  padding: 1px;
   z-index: 1;
 }
 
@@ -148,15 +260,7 @@ section {
   flex-direction: column;
 }
 
-// color: rgb(74, 185, 168, 255 teal)
-// color: rgb(24, 127, 196, 255 blue)
-// color: rgb(235, 80, 129, 255 pink)
-// color: rgb(132, 91, 165, 255 purple)
-
-input {
-  // min-width: 12rem;
-}
-
-a:hover {
-  color: rgb(74, 185, 168, 255);
-}
+// background-color: rgb(74, 185, 168, 255); teal
+// background-color: rgb(24, 127, 196, 255 ); blue
+// background-color: rgb(235, 80, 129, 255); pink
+// background-color: rgb(132, 91, 165, 255 purple)

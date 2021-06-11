@@ -2,6 +2,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
+// add loading content
+
 export function PetList() {
   const [pets, setPets] = useState([])
   const [newName, setNewName] = useState('')
@@ -92,44 +94,59 @@ export function PetList() {
           }}
         />
       </form>
-      <button className="dropdown">
+      <section className="dropdown">
         Sort Pets
-        <div className="dropdown-content">
-          <button onClick={sortByBirthday}>By Birthday</button>
-          <button onClick={sortByName}>By Name</button>
-          <button onClick={sortByHungerLevel}>By Hunger</button>
-          <button onClick={sortByHappinessLevel}>By Happiness</button>
-          <button onClick={reverseOrder}>Reverse Order</button>
-        </div>
-      </button>
+        <ul className="dropdown-content">
+          <button className="sortButton" onClick={sortByBirthday}>
+            By Birthday
+          </button>
+          <button className="sortButton" onClick={sortByName}>
+            By Name
+          </button>
+          <button className="sortButton" onClick={sortByHungerLevel}>
+            By Hunger
+          </button>
+          <button className="sortButton" onClick={sortByHappinessLevel}>
+            By Happiness
+          </button>
+          <button className="sortButton" onClick={reverseOrder}>
+            Reverse Order
+          </button>
+        </ul>
+      </section>
       {/* <h3>All Pets</h3> */}
       <ul>
         {pets
           .filter(pet => pet.name.toLowerCase().includes(newSearch))
           .map(function (pet) {
             return (
-              <li>
-                <div>
-                  <p>Name: {pet.name}</p>
-                  <p>
-                    Birthday:{' '}
-                    {Intl.DateTimeFormat('en-US').format(
-                      Date.parse(pet.birthday)
-                    )}
-                  </p>
-                  <p>Hunger Level: {pet.hungerLevel}</p>
-                  <p>Happiness Level: {pet.happinessLevel}</p>
-                  <button>
-                    <Link to={`/${pet.id}`}>Interact with {pet.name}</Link>
-                  </button>
-                </div>
-              </li>
+              <Link to={`/${pet.id}`}>
+                <li className="petList">
+                  <div>
+                    <p>Name: {pet.name}</p>
+                    <p>
+                      Birthday:{' '}
+                      {Intl.DateTimeFormat('en-US').format(
+                        Date.parse(pet.birthday)
+                      )}
+                    </p>
+                    <p>Hunger Level: {pet.hungerLevel}</p>
+                    <p>Happiness Level: {pet.happinessLevel}</p>
+                    <Link to={`/${pet.id}`}>
+                      {' '}
+                      <button className="petList">
+                        Interact with {pet.name}
+                      </button>
+                    </Link>
+                  </div>
+                </li>
+              </Link>
             )
           })}
       </ul>
-      <button className="graveyard">
-        <Link to="/graveyard">Visit Graveyard</Link>
-      </button>
+      <Link to="/graveyard">
+        <button className="visitGraveyard">Visit Graveyard</button>
+      </Link>
     </>
   )
 }
