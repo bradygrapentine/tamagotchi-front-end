@@ -21,6 +21,11 @@ export function PetList() {
     setPets(reversedPets)
   }
 
+  function sortByBirthday() {
+    let newPets = [...pets].sort(pet => Date.parse(pet.birthday))
+    setPets(newPets)
+    console.log(pets.map(pet => pet.birthday))
+  }
   function sortByName() {
     let newPets = [...pets].sort((petA, petB) =>
       petA.name.toLowerCase().localeCompare(petB.name.toLowerCase())
@@ -61,12 +66,12 @@ export function PetList() {
 
   return (
     <>
-      <h1>Interact With Your Tamagotchi's!</h1>
-      <button className="graveyard">
+      <h2>Interact With Your Katagotchi's!</h2>
+      {/* <button className="graveyard">
         <Link to="/graveyard">Visit Graveyard</Link>
-      </button>
+      </button> */}
       <form onSubmit={createPet}>
-        <label>Create New Pet: </label>
+        <label>Create New Pet:</label>
         <input
           type="text"
           placeholder="Enter New Pet's Name"
@@ -77,35 +82,41 @@ export function PetList() {
         />
       </form>
       <form onSubmit={event => event.preventDefault()}>
-        <label>Search By Name: </label>
+        <label>Filter By Name:</label>
         <input
           type="text"
-          placeholder="Search Here"
+          placeholder="Enter Name"
           value={newSearch}
           onChange={event => {
             setNewSearch(event.target.value)
           }}
         />
       </form>
-      <section>
-        <button onClick={sortByName}>Sort By Name</button>
-        <button onClick={sortByHungerLevel}>Sort By Hunger</button>
-        <button onClick={sortByHappinessLevel}>Sort By Happiness</button>
-        <button onClick={reverseOrder}>Reverse Order</button>
-      </section>
-      <h3>All Pets</h3>
+      <button className="dropdown">
+        Sort Pets
+        <div className="dropdown-content">
+          <button onClick={sortByBirthday}>By Birthday</button>
+          <button onClick={sortByName}>By Name</button>
+          <button onClick={sortByHungerLevel}>By Hunger</button>
+          <button onClick={sortByHappinessLevel}>By Happiness</button>
+          <button onClick={reverseOrder}>Reverse Order</button>
+        </div>
+      </button>
+      {/* <h3>All Pets</h3> */}
       <ul>
         {pets
-          // .sort((petA, petB) =>
-          //   petA.name.toLowerCase().localeCompare(petB.name.toLowerCase())
-          // )
           .filter(pet => pet.name.toLowerCase().includes(newSearch))
           .map(function (pet) {
             return (
               <li>
                 <div>
                   <p>Name: {pet.name}</p>
-                  <p>Birthday: {pet.birthday}</p>
+                  <p>
+                    Birthday:{' '}
+                    {Intl.DateTimeFormat('en-US').format(
+                      Date.parse(pet.birthday)
+                    )}
+                  </p>
                   <p>Hunger Level: {pet.hungerLevel}</p>
                   <p>Happiness Level: {pet.happinessLevel}</p>
                   <button>
@@ -116,6 +127,9 @@ export function PetList() {
             )
           })}
       </ul>
+      <button className="graveyard">
+        <Link to="/graveyard">Visit Graveyard</Link>
+      </button>
     </>
   )
 }

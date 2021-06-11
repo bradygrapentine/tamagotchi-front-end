@@ -87,6 +87,28 @@ export function PetPage() {
     }
   }
 
+  function formatBirthdayPage(bdayAsString) {
+    let truncBday = bdayAsString.slice(0, 10).split('-').reverse()
+    const [day, month, year] = truncBday
+    let truncBdayString = [month, day, year].join('/')
+    truncBdayString =
+      truncBdayString[0] === '0'
+        ? truncBdayString.slice(1, 10)
+        : truncBdayString
+    return truncBdayString
+  }
+  // format single digit months and eliminate one of these fn's
+  function formatLastInteractedWithDatePage(lastDateAsString) {
+    let truncLast = lastDateAsString.slice(0, 10).split('-').reverse()
+    const [day, month, year] = truncLast
+    let truncLastString = [month, day, year].join('/')
+    truncLastString =
+      truncLastString[0] === '0'
+        ? truncLastString.slice(1, 10)
+        : truncLastString
+    return truncLastString
+  }
+
   useEffect(() => {
     async function getPet() {
       const response = await axios.get(
@@ -95,6 +117,8 @@ export function PetPage() {
       if (response.status == 200) {
         setPet(response.data)
         console.log(response.data)
+        // formatBirthday(response.data.birthday)
+        // formatLastInteractedWithDate(response.data.lastInteractedWithDate)
       }
     }
     getPet()
@@ -102,17 +126,26 @@ export function PetPage() {
 
   return (
     <>
-      <h1>Interact With Your Tamagotchi's!</h1>
-      <button>
-        <Link to="/">Go Home</Link>
-      </button>
+      <Link to="/">
+        <h2>Interact With Your Katagotchi's!</h2>
+      </Link>
       <div>
+        {/* Object 
+        { id: 9, name: "steven", 
+        birthday: "2021-06-08T22:36:10.990741", hungerLevel: 6, 
+        happinessLevel: 16, 
+        lastInteractedWithDate: "2021-06-09T18:07:00.842122", 
+        isDead: false }
+         */}
         <p>Name: {pet.name}</p>
-        <p>Birthday: {pet.birthday}</p>
+        <p>Birthday: {formatBirthdayPage(pet.birthday)}</p>{' '}
         <p>Hunger Level: {pet.hungerLevel}</p>
         <p>Happiness Level: {pet.happinessLevel}</p>
         <p>Status: Alive</p>
-        <p>Last Interaction: {pet.lastInteractedWithDate} </p>
+        <p>
+          Last Interaction:{' '}
+          {formatLastInteractedWithDatePage(pet.lastInteractedWithDate)}
+        </p>
         <section>
           <button onClick={playWithPet}>Play With Pet</button>
           <button onClick={scoldPet}>Scold Pet</button>
@@ -122,9 +155,10 @@ export function PetPage() {
           Delete Pet
         </button>
         <form onSubmit={renamePet}>
+          <label>Rename Pet:</label>
           <input
             type="text"
-            placeholder="Enter New Name and Press Enter"
+            placeholder="Enter New Name"
             value={newName}
             onChange={event => {
               setNewName(event.target.value)
@@ -132,6 +166,10 @@ export function PetPage() {
           />
         </form>
       </div>{' '}
+      <section className="filler"></section>
+      <footer>
+        <Link to="/">Back to Pet List</Link>
+      </footer>
     </>
   )
 }
