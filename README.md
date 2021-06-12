@@ -12,8 +12,6 @@
 
 - stop footer from climbing on all pages with extreme zoom out
 
-<!-
-
 <!-- - should add some styling so the user knows how the list is being sorted, possibly by changing the font color of active buttons -
 --fix color change resets -->
 
