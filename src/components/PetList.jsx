@@ -2,12 +2,11 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-// add loading content
-
 export function PetList() {
   const [pets, setPets] = useState([])
   const [newName, setNewName] = useState('')
   const [newSearch, setNewSearch] = useState('')
+  const [dropDown, setDropDown] = useState(false)
 
   async function loadPets() {
     const response = await axios.get(
@@ -51,13 +50,15 @@ export function PetList() {
   }
 
   async function createPet(event) {
-    event.preventDefault()
-    const response = await axios.post(
-      'https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets',
-      { name: newName }
-    )
-    if (response.status == 201) {
-      loadPets()
+    if (newName.length < 21) {
+      event.preventDefault()
+      const response = await axios.post(
+        'https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets',
+        { name: newName }
+      )
+      if (response.status == 201) {
+        loadPets()
+      }
     }
     setNewName('')
   }
@@ -68,85 +69,101 @@ export function PetList() {
 
   return (
     <>
-      <h2>Interact With Your Katagotchi's!</h2>
-      {/* <button className="graveyard">
-        <Link to="/graveyard">Visit Graveyard</Link>
-      </button> */}
-      <form onSubmit={createPet}>
-        <label>Create New Pet:</label>
+      <h2 className="mainHeader">Interact With Your Katagotchi's!</h2>
+      <form onSubmit={createPet} className="createNewPet">
+        <label className="createNewPet">Create New Pet:</label>
         <input
+          className="createNewPet"
           type="text"
-          placeholder="Enter New Pet's Name"
+          placeholder="< 21 Characters/Name"
           value={newName}
           onChange={event => {
             setNewName(event.target.value)
           }}
         />
       </form>
-      <form onSubmit={event => event.preventDefault()}>
-        <label>Filter By Name:</label>
-        <input
-          type="text"
-          placeholder="Enter Name"
-          value={newSearch}
-          onChange={event => {
-            setNewSearch(event.target.value)
-          }}
-        />
-      </form>
-      <section className="dropdown">
-        Sort Pets
-        <ul className="dropdown-content">
-          <button className="sortButton" onClick={sortByBirthday}>
-            By Birthday
+      {pets.length === 0 ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <form
+            className="filterByName"
+            onSubmit={event => event.preventDefault()}
+          >
+            <label className="filterByName">Filter By Name:</label>
+            <input
+              className="filterByName"
+              type="text"
+              placeholder="Enter Name"
+              value={newSearch}
+              onChange={event => {
+                setNewSearch(event.target.value)
+              }}
+            />
+          </form>
+          <button onClick={() => setDropDown(!dropDown)} className="dropdown">
+            {' '}
+            Sort Pets
+            {dropDown === false ? (
+              <></>
+            ) : (
+              <ul className="dropdown-content">
+                <button className="sortButton" onClick={sortByBirthday}>
+                  By Birthday
+                </button>
+                <button className="sortButton" onClick={sortByName}>
+                  By Name
+                </button>
+                <button className="sortButton" onClick={sortByHungerLevel}>
+                  By Hunger
+                </button>
+                <button className="sortButton" onClick={sortByHappinessLevel}>
+                  By Happiness
+                </button>
+                <button className="sortButton" onClick={reverseOrder}>
+                  Reverse Order
+                </button>
+              </ul>
+            )}
           </button>
-          <button className="sortButton" onClick={sortByName}>
-            By Name
-          </button>
-          <button className="sortButton" onClick={sortByHungerLevel}>
-            By Hunger
-          </button>
-          <button className="sortButton" onClick={sortByHappinessLevel}>
-            By Happiness
-          </button>
-          <button className="sortButton" onClick={reverseOrder}>
-            Reverse Order
-          </button>
-        </ul>
-      </section>
-      {/* <h3>All Pets</h3> */}
-      <ul>
-        {pets
-          .filter(pet => pet.name.toLowerCase().includes(newSearch))
-          .map(function (pet) {
-            return (
-              <Link to={`/${pet.id}`}>
-                <li className="petList">
-                  <div>
-                    <p>Name: {pet.name}</p>
-                    <p>
-                      Birthday:{' '}
-                      {Intl.DateTimeFormat('en-US').format(
-                        Date.parse(pet.birthday)
-                      )}
-                    </p>
-                    <p>Hunger Level: {pet.hungerLevel}</p>
-                    <p>Happiness Level: {pet.happinessLevel}</p>
-                    <Link to={`/${pet.id}`}>
-                      {' '}
-                      <button className="petList">
-                        Interact with {pet.name}
-                      </button>
-                    </Link>
-                  </div>
-                </li>
-              </Link>
-            )
-          })}
-      </ul>
-      <Link to="/graveyard">
-        <button className="visitGraveyard">Visit Graveyard</button>
-      </Link>
+          <ul className="petList">
+            {pets
+              .filter(pet => pet.name.toLowerCase().includes(newSearch))
+              .map(function (pet) {
+                return (
+                  <Link to={`/${pet.id}`}>
+                    <li className="petList Item">
+                      <div className="petList Item">
+                        <p className="petList Item Name">Name: {pet.name}</p>
+                        <p className="petList Item Bray">
+                          Birthday:{' '}
+                          {Intl.DateTimeFormat('en-US').format(
+                            Date.parse(pet.birthday)
+                          )}
+                        </p>
+                        <p className="petList Item Hunger">
+                          Hunger Level: {pet.hungerLevel}
+                        </p>
+                        <p className="petList Item Happiness">
+                          Happiness Level: {pet.happinessLevel}
+                        </p>
+                        <Link to={`/${pet.id}`}>
+                          {' '}
+                          <button className="petList Item Interact">
+                            Interact with {pet.name}
+                          </button>
+                        </Link>
+                      </div>
+                    </li>
+                  </Link>
+                )
+              })}
+          </ul>
+          <Link to="/graveyard">
+            <button className="visitGraveyard">Visit Graveyard</button>
+          </Link>
+        </>
+      )}
     </>
   )
 }

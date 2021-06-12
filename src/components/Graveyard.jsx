@@ -2,10 +2,6 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-// format graveyard plot so grass covers everything but sky header
-// sort graveyard entries by name
-// add loading content
-
 export function Graveyard() {
   const [deadPets, setDeadPets] = useState([])
 
@@ -30,34 +26,46 @@ export function Graveyard() {
     <>
       <header>
         <h4>Please Scroll Quietly</h4>
-        <p> ☁️ ☁️ ☁️ ☁️ ☁️</p>
+        <p className="clouds">☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️</p>
+        <h4>
+          These pets deserve the respect they didn't receive when they were
+          alive
+        </h4>
+        <p className="clouds">☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️</p>
       </header>
-      <p>
-        These pets deserve the respect they didn't receive when they were alive
-      </p>
-      <article className="graveyardPlot">
-        <ul>
-          {deadPets.map(function (deadPet) {
-            return (
-              <li className="headStone">
-                <div>
-                  <p className="engraving">Name: {deadPet.name}</p>
-                  {/* <p>Birthday: {deadPet.birthday}</p> */}
-                  <p className="engraving">
-                    Cause of Death:{' '}
-                    {deadPet.hungerLevel >= 15 ? 'Hunger' : 'Negligence'}
-                  </p>
-                  {/* <p>Last Day: </p> */}
-                </div>
-              </li>
-            )
-          })}
-        </ul>
-        <Link to="/">
-          {' '}
-          <button className="graveyardtoHome">Click to Run From Guilt </button>
-        </Link>
-      </article>
+      {deadPets.length !== 0 ? (
+        <article className="graveyardPlot">
+          <ul>
+            {[...deadPets]
+              .sort((petA, petB) =>
+                petA.name.toLowerCase().localeCompare(petB.name.toLowerCase())
+              )
+              .map(function (deadPet) {
+                return (
+                  <li className="headStone">
+                    <div>
+                      <p className="engraving">Name: {deadPet.name}</p>
+                      {/* <p>Birthday: {deadPet.birthday}</p> */}
+                      <p className="engraving">
+                        Cause of Death:{' '}
+                        {deadPet.hungerLevel >= 15 ? 'Hunger' : 'Negligence'}
+                      </p>
+                      {/* <p>Last Day: </p> */}
+                    </div>
+                  </li>
+                )
+              })}
+          </ul>
+          <Link to="/">
+            {' '}
+            <button className="graveyardtoHome">
+              Click to Run From Guilt{' '}
+            </button>
+          </Link>
+        </article>
+      ) : (
+        <p>Loading...</p>
+      )}
     </>
   )
 }

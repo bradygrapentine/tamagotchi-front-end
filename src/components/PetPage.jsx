@@ -2,8 +2,6 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
 
-// address issue when pet dies and redirect user to home page
-// add loading content
 export function PetPage() {
   const [pet, setPet] = useState({
     id: '',
@@ -16,6 +14,7 @@ export function PetPage() {
   })
 
   const [newName, setNewName] = useState('')
+  const [petDeceased, setPetDeceased] = useState(false)
 
   const params = useParams()
   // @ts-ignore
@@ -58,7 +57,6 @@ export function PetPage() {
       getPet()
     }
   }
-
   async function renamePet(event) {
     event.preventDefault()
     const response = await axios.put(
@@ -99,15 +97,6 @@ export function PetPage() {
   }
 
   useEffect(() => {
-    async function getPet() {
-      const response = await axios.get(
-        `https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets/${id}`
-      )
-      if (response.status == 200) {
-        setPet(response.data)
-        console.log(response.data)
-      }
-    }
     getPet()
   }, [])
 
@@ -116,36 +105,63 @@ export function PetPage() {
       <Link to="/">
         <h2 className="petPage">Interact With Your Katagotchi's!</h2>
       </Link>
-      <div className="petPage">
-        <p>Name: {pet.name}</p>
-        <p>Birthday: {formatDate(pet.birthday)}</p>{' '}
-        <p>Hunger Level: {pet.hungerLevel}</p>
-        <p>Happiness Level: {pet.happinessLevel}</p>
-        <p>Status: Alive</p>
-        <p>Last Interaction: {formatDate(pet.lastInteractedWithDate)}</p>
-        <section>
-          <button onClick={playWithPet}>Play With Pet</button>
-          <button onClick={scoldPet}>Scold Pet</button>
-          <button onClick={feedPet}>Feed Pet</button>
-        </section>
-        <button className="delete" onClick={deletePet}>
-          Delete Pet
-        </button>
-        <form onSubmit={renamePet}>
-          <label>Rename Pet:</label>
-          <input
-            type="text"
-            placeholder="Enter New Name"
-            value={newName}
-            onChange={event => {
-              setNewName(event.target.value)
-            }}
-          />
-        </form>
-      </div>{' '}
-      <section className="filler"></section>
+      {pet.id === '' ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <ul className="petPage">
+            <li className="name">Name: {pet.name}</li>
+            <li className="bday">Birthday: {formatDate(pet.birthday)}</li>
+            <li className="hunger">Hunger Level: {pet.hungerLevel}</li>
+            <li className="happiness">Happiness Level: {pet.happinessLevel}</li>
+            <li className="isDead">Status: {pet.isDead ? 'Dead' : 'Alive'}</li>
+            <li className="lastInteraction">
+              Last Interaction: {formatDate(pet.lastInteractedWithDate)}
+            </li>
+            {pet.isDead ? (
+              <p>
+                Well then...just because they're made of data, doesn't mean they
+                don't need to eat...
+              </p>
+            ) : (
+              <>
+                <li className="interactions">
+                  <button className="play" onClick={playWithPet}>
+                    Play With Pet
+                  </button>
+                  <button className="scold" onClick={scoldPet}>
+                    Scold Pet
+                  </button>
+                  <button className="feed" onClick={feedPet}>
+                    Feed Pet
+                  </button>
+                </li>
+                <li>
+                  <form className="rename" onSubmit={renamePet}>
+                    <label>Rename Pet:</label>
+                    <input
+                      type="text"
+                      placeholder="Enter New Name"
+                      value={newName}
+                      onChange={event => {
+                        setNewName(event.target.value)
+                      }}
+                    />
+                  </form>
+                </li>
+                <li>
+                  <button className="delete" onClick={deletePet}>
+                    Delete Pet
+                  </button>
+                </li>
+              </>
+            )}
+          </ul>
+        </>
+      )}
+
       <Link to="/">
-        <footer>Back to Pet List </footer>
+        <button className="petPage">Back to Pet List</button>
       </Link>
     </>
   )
