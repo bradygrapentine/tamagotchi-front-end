@@ -2,9 +2,35 @@
 
 ![SDG](./docs/button.png)
 
-    - Add some new fields to your pet. Perhaps a string-based URL of an image of the pet to display beside its name.
+<!-- - Add some new fields to your pet. Perhaps a string-based URL of an image of the pet to display beside its name. ->> daily kitteh API
+- placeholder Keanu worked nicely -->
 
-- daily kitteh API
+<!-- DONE -->
+
+<!-- -spacing on pet page -->
+<!-- -margins on headstones -->
+
+- stop footer from climbing on all pages with extreme zoom out
+
+<!-
+
+<!-- - should add some styling so the user knows how the list is being sorted, possibly by changing the font color of active buttons -
+--fix color change resets -->
+
+<!-- Done -->
+
+<!-- - use grid and media queries to reorganize pet list and graveyard -->
+
+<!-- DONE -->
+
+- add death date to API and adjust headstones to include birthday - death date
+
+<!-- - work on contrasting make buttons a darker pink and boxes around white text darker teal to improve contrast, make p text darker as well -->
+
+<!-- DONE -->
+
+- DRY process with JS
+- clean up css
 
     <!-- - Once you have successfully deployed your application: Use the Insomnia app to work with your API. At a minimum, use your API endpoints to create and list your Pets
 

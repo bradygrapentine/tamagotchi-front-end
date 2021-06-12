@@ -7,6 +7,10 @@ export function PetList() {
   const [newName, setNewName] = useState('')
   const [newSearch, setNewSearch] = useState('')
   const [dropDown, setDropDown] = useState(false)
+  const [nameActive, setNameActive] = useState(false)
+  const [hungerActive, setHungerActive] = useState(false)
+  const [happinessActive, setHappinessActive] = useState(false)
+  const [reverseActive, setReverseActive] = useState(false)
 
   async function loadPets() {
     const response = await axios.get(
@@ -17,40 +21,56 @@ export function PetList() {
     }
   }
 
-  function reverseOrder() {
-    let reversedPets = [...pets].reverse()
-    setPets(reversedPets)
+  function resetSort() {
+    loadPets()
+    setNameActive(false)
+    setHungerActive(false)
+    setHappinessActive(false)
+    setReverseActive(false)
   }
 
-  function sortByBirthday() {
-    let newPets = [...pets].sort(pet => Date.parse(pet.birthday))
-    setPets(newPets)
-    console.log(pets.map(pet => pet.birthday))
+  function reverseOrder() {
+    const reversedPets = [...pets].reverse()
+    setPets(reversedPets)
+    setReverseActive(!reverseActive)
   }
+
   function sortByName() {
-    let newPets = [...pets].sort((petA, petB) =>
+    const newPets = [...pets].sort((petA, petB) =>
       petA.name.toLowerCase().localeCompare(petB.name.toLowerCase())
     )
     setPets(newPets)
     console.log(pets.map(pet => pet.name))
+    setNameActive(true)
+    setHungerActive(false)
+    setHappinessActive(false)
+    setReverseActive(false)
   }
   function sortByHappinessLevel() {
-    let newPets = [...pets].sort(
+    const newPets = [...pets].sort(
       (petA, petB) => Number(petA.happinessLevel) - Number(petB.happinessLevel)
     )
     setPets(newPets)
     console.log(pets.map(pet => pet.happinessLevel))
+    setNameActive(false)
+    setHungerActive(false)
+    setHappinessActive(true)
+    setReverseActive(false)
   }
   function sortByHungerLevel() {
-    let newPets = [...pets].sort(
-      (petA, petB) => Number(petA.hungerLevel) - Number(petB.hungerLevel)
+    const newPets = [...pets].sort(
+      (petA, petB) => Number(petB.hungerLevel) - Number(petA.hungerLevel)
     )
     setPets(newPets)
     console.log(pets.map(pet => pet.hungerLevel))
+    setNameActive(false)
+    setHungerActive(true)
+    setHappinessActive(false)
+    setReverseActive(false)
   }
 
   async function createPet(event) {
-    if (newName.length < 21) {
+    if (newName.length < 19) {
       event.preventDefault()
       const response = await axios.post(
         'https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets',
@@ -69,13 +89,13 @@ export function PetList() {
 
   return (
     <>
-      <h2 className="mainHeader">Interact With Your Katagotchi's!</h2>
+      <h2 className="mainHeader">Interact With Your Katagotchis!</h2>
       <form onSubmit={createPet} className="createNewPet">
-        <label className="createNewPet">Create New Pet:</label>
+        <label className="createNewPet">Create Katagotchi:</label>
         <input
           className="createNewPet"
           type="text"
-          placeholder="< 21 Characters/Name"
+          placeholder="< 19 Characters/Name"
           value={newName}
           onChange={event => {
             setNewName(event.target.value)
@@ -103,25 +123,39 @@ export function PetList() {
           </form>
           <button onClick={() => setDropDown(!dropDown)} className="dropdown">
             {' '}
-            Sort Pets
+            Sort Katagotchis
             {dropDown === false ? (
               <></>
             ) : (
               <ul className="dropdown-content">
-                <button className="sortButton" onClick={sortByBirthday}>
-                  By Birthday
-                </button>
-                <button className="sortButton" onClick={sortByName}>
+                <button
+                  className={nameActive ? 'sortButton active' : 'sortButton'}
+                  onClick={sortByName}
+                >
                   By Name
                 </button>
-                <button className="sortButton" onClick={sortByHungerLevel}>
+                <button
+                  className={hungerActive ? 'sortButton active' : 'sortButton'}
+                  onClick={sortByHungerLevel}
+                >
                   By Hunger
                 </button>
-                <button className="sortButton" onClick={sortByHappinessLevel}>
+                <button
+                  className={
+                    happinessActive ? 'sortButton active' : 'sortButton'
+                  }
+                  onClick={sortByHappinessLevel}
+                >
                   By Happiness
                 </button>
-                <button className="sortButton" onClick={reverseOrder}>
+                <button
+                  className={reverseActive ? 'sortButton active' : 'sortButton'}
+                  onClick={reverseOrder}
+                >
                   Reverse Order
+                </button>
+                <button className="sortButton" onClick={resetSort}>
+                  Reset
                 </button>
               </ul>
             )}
@@ -132,20 +166,24 @@ export function PetList() {
               .map(function (pet) {
                 return (
                   <Link to={`/${pet.id}`}>
-                    <li className="petList Item">
-                      <div className="petList Item">
-                        <p className="petList Item Name">Name: {pet.name}</p>
-                        <p className="petList Item Bray">
+                    <li className="petList">
+                      <div className="petList">
+                        <p className="petListName">
+                          Name: <p>{pet.name}</p>
+                        </p>
+                        <p className="petListBday">
                           Birthday:{' '}
-                          {Intl.DateTimeFormat('en-US').format(
-                            Date.parse(pet.birthday)
-                          )}
+                          <p>
+                            {Intl.DateTimeFormat('en-US').format(
+                              Date.parse(pet.birthday)
+                            )}
+                          </p>
                         </p>
                         <p className="petList Item Hunger">
-                          Hunger Level: {pet.hungerLevel}
+                          Hunger Level: <p>{pet.hungerLevel}</p>
                         </p>
                         <p className="petList Item Happiness">
-                          Happiness Level: {pet.happinessLevel}
+                          Happiness Level: <p>{pet.happinessLevel}</p>
                         </p>
                         <Link to={`/${pet.id}`}>
                           {' '}

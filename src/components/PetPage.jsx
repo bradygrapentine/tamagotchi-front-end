@@ -103,20 +103,30 @@ export function PetPage() {
   return (
     <>
       <Link to="/">
-        <h2 className="petPage">Interact With Your Katagotchi's!</h2>
+        <h2 className="petPage">Interact With Your Katagotchis!</h2>
       </Link>
       {pet.id === '' ? (
         <p>Loading...</p>
       ) : (
         <>
           <ul className="petPage">
-            <li className="name">Name: {pet.name}</li>
-            <li className="bday">Birthday: {formatDate(pet.birthday)}</li>
-            <li className="hunger">Hunger Level: {pet.hungerLevel}</li>
-            <li className="happiness">Happiness Level: {pet.happinessLevel}</li>
-            <li className="isDead">Status: {pet.isDead ? 'Dead' : 'Alive'}</li>
+            <li className="name">
+              Name: <p>{pet.name}</p>
+            </li>
+            <li className="bday">
+              Birthday: <p>{formatDate(pet.birthday)}</p>
+            </li>
+            <li className="hunger">
+              Hunger Level: <p>{pet.hungerLevel}</p>
+            </li>
+            <li className="happiness">
+              Happiness Level: <p>{pet.happinessLevel}</p>
+            </li>
+            <li className="isDead">
+              Status: <p>{pet.isDead ? 'Dead' : 'Alive'}</p>
+            </li>
             <li className="lastInteraction">
-              Last Interaction: {formatDate(pet.lastInteractedWithDate)}
+              Last Interaction: <p>{formatDate(pet.lastInteractedWithDate)}</p>
             </li>
             {pet.isDead ? (
               <p>
@@ -126,19 +136,23 @@ export function PetPage() {
             ) : (
               <>
                 <li className="interactions">
+                  <img
+                    src="https://placekeanu.com/240/280/y"
+                    alt="No Image Available"
+                  />
                   <button className="play" onClick={playWithPet}>
-                    Play With Pet
+                    Play With Katagotchi
                   </button>
                   <button className="scold" onClick={scoldPet}>
-                    Scold Pet
+                    Scold Katagotchi
                   </button>
                   <button className="feed" onClick={feedPet}>
-                    Feed Pet
+                    Feed Katagotchi
                   </button>
                 </li>
-                <li>
+                <li className="delete">
                   <form className="rename" onSubmit={renamePet}>
-                    <label>Rename Pet:</label>
+                    <label>Rename Katagotchi:</label>
                     <input
                       type="text"
                       placeholder="Enter New Name"
@@ -149,20 +163,19 @@ export function PetPage() {
                     />
                   </form>
                 </li>
-                <li>
+                <li className="delete">
                   <button className="delete" onClick={deletePet}>
-                    Delete Pet
+                    Delete Katagotchi
                   </button>
                 </li>
               </>
             )}
           </ul>
+          <Link to="/">
+            <button className="petPageToHome">Back to Katagotchi List</button>
+          </Link>
         </>
       )}
-
-      <Link to="/">
-        <button className="petPage">Back to Pet List</button>
-      </Link>
     </>
   )
 }
