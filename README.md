@@ -15,6 +15,8 @@
 - connect to an API to get random pictures and display in pet pages, as opposed to stock
   imagery
 
+- add media queries to make all pages extremely responsive
+
 <!-- - should add some styling so the user knows how the list is being sorted, possibly by changing the font color of active buttons -
 --fix color change resets -->
 
