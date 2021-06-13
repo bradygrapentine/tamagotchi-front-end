@@ -1,34 +1,39 @@
-// This needs substantial tidying
+//This needs substantial tidying
 
 * {
   margin: 0.5rem;
   padding: 0.25rem;
   text-align: center;
 }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  margin: 0rem;
+  padding: 0rem;
+  background-color: rgb(172, 222, 255);
+}
+
 :root {
   font-family: 'Press Start 2P', cursive;
   font-size: 14px;
   margin: 0rem;
   padding: 0rem;
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 html {
   height: 100%;
   margin: 0rem;
   padding: 0rem;
-}
-
-.graveyardtoHome {
-  padding: 0.5rem;
-  margin: 3rem 0rem 0rem 0rem;
-  text-align: center;
-  width: 100vw;
-  border-radius: 0%;
-}
-
-.graveyardtoHome:hover {
-  transform: scale(1.25, 1.25);
-  border-radius: 0%;
 }
 
 .clouds {
@@ -40,16 +45,18 @@ html {
   width: 10000vw;
 }
 
-body {
-  margin: 0;
-  min-height: 100%;
-  margin: 0rem;
-  padding: 0rem;
-  background-color: rgb(132, 206, 255);
-}
-
 h2 {
   text-align: center;
+  color: white;
+  width: 100vw;
+  padding: 1.25rem;
+  margin: 0rem 4rem 2rem 4rem;
+  background-color: rgb(0, 169, 152);
+}
+
+h3 {
+  text-align: center;
+  text-decoration: none;
   color: white;
   width: 100vw;
   padding: 1.25rem;
@@ -64,47 +71,41 @@ h2 {
   border-radius: 0%;
   color: white;
   padding: 0.5rem;
+  background-color: rgb(255, 43, 110);
 }
 
 .visitGraveyard:hover {
-  transform: scale(1.25, 1.25);
-}
-
-h3 {
-  text-align: center;
-  text-decoration: underline;
+  transform: scale(1.15, 1.15);
 }
 
 h4 {
   margin: 1.5rem 0rem 1rem 0rem;
   padding: 0rem;
   line-height: 1.5rem;
-  // max-width: 10vw;
-  // max-width: 100rem;
-  // width: 10vw;
-}
-
-p.petList {
-  text-align: center;
-  margin: 1rem;
-  padding: 0rem;
-  line-height: 1rem;
 }
 
 a {
   text-decoration: none;
   max-width: fit-content;
-  margin: 0;
-  padding: 0;
+  margin: 0rem;
+  padding: 0rem;
 }
 
-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
+a.katagotchiImage {
+  text-decoration: none;
+  max-width: fit-content;
+  margin-bottom: 1.25rem;
+}
+
+img {
+  border-radius: 3rem;
+  background-color: rgb(255, 43, 110);
+  margin: 1rem;
+  padding: 0.25rem;
+  text-align: center;
+  color: black;
+  background-color: white;
+  line-height: 2rem;
 }
 
 .navBar {
@@ -141,19 +142,14 @@ section {
   color: white;
 }
 
-p.petListName {
-  margin: 1.5rem 2.5rem 1rem 2.5rem;
-  // padding: 1.5rem 2.5rem 1rem 2.5rem;
-}
-
 li.petList {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: space-evenly;
+  align-content: space-between;
   margin: 1.5rem;
   padding: 0.5rem;
-  width: 21rem;
+  width: 19.9rem;
   height: 26rem;
   border-top-left-radius: 10rem;
   border-top-right-radius: 10rem;
@@ -174,31 +170,49 @@ button {
   border-radius: 5rem;
   background-color: rgb(255, 43, 110);
   color: white;
-  padding: 0.5rem 0.25rem 0.5rem 0.5rem;
+  padding: 0.5rem 0.75rem;
   font-family: 'Press Start 2P', cursive;
   justify-content: center;
   align-items: center;
 }
 
 li.petList button {
-  margin-top: 0rem;
-  margin-bottom: 1.5rem;
-  padding: 0.5rem;
   height: 3rem;
 }
 
-// button {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   margin: 0.5rem;
-//   color: white;
-//   background-color: rgb(255, 120, 163);
-//   border-radius: 1rem;
-//   height: 3rem;
+div.petList {
+  display: flex;
+  justify-content: center;
+  align-items: space-between;
+  flex-direction: column;
+  margin: 1.5rem 0rem 1rem 0rem;
+  padding: 0rem;
+}
 
-//   border: 0;
-// }
+div.listItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+  margin: 1rem;
+}
+
+.petList p {
+  text-align: center;
+  margin: 0rem;
+  padding: 0rem;
+  line-height: 2rem;
+}
+
+div.petListName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+  margin: 1.5rem 2.5rem 1rem 2.5rem;
+}
 
 button:hover {
   transform: scale(1.05, 1.05);
@@ -240,11 +254,9 @@ article.graveyardPlot {
 label {
   color: white;
   padding: 0.5rem 0.25rem 0.5rem 0.75rem;
-  // margin: 0.5rem;
   margin: 0rem;
-  border-radius: 0.5rem;
+  border-radius: 5rem;
   background-color: rgb(0, 169, 152);
-  // 74 185 168
   font-weight: 600;
 }
 form {
@@ -256,14 +268,6 @@ form {
   width: fit-content;
 }
 
-// label.filterByName {
-//   margin: 0rem;
-// }
-
-// form.filterByName {
-//   margin: 0rem;
-// }
-
 input {
   margin: 0.5rem 0rem;
   padding: 0.125rem;
@@ -271,26 +275,25 @@ input {
 }
 .dropdown {
   display: flex;
-  padding: 0.5rem 0.25rem 0.5rem 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   margin-top: 1rem;
   border-radius: 1.5rem;
   font-size: 1rem;
   min-width: 18rem;
-  //
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-h2.petPage:hover {
-  border-top: 10px solid rgb(0, 169, 152);
-  border-bottom: 10px solid rgb(0, 169, 152);
+h3.petPage:hover {
+  background-color: rgb(255, 43, 110);
+  transform: scale(1.1, 1.1);
 }
 
 ul {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: center;
   padding: 0%;
   margin: 0rem 0.5rem;
@@ -304,26 +307,61 @@ ul.petList {
   flex-wrap: wrap;
 }
 
+div.petPage {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0rem;
+  padding: 0rem;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
 ul.petPage {
-  margin: 2rem 0.5rem 3rem 0.5rem;
-  // max-width: 10rem;
+  margin: 2rem 1rem 1rem 1rem;
+  min-width: 18.5rem;
+  width: 74vw;
+  height: 38rem;
+  border-radius: 5rem;
+  border: 10rem solid rgb(0, 169, 152);
+  border-width: 2rem;
+  background-color: white;
+  padding: 0.5rem;
+}
+
+ul.deleteAndRename {
+  margin: 0rem 1rem;
+  height: auto;
   min-width: min-content;
-  border-top-left-radius: 10rem;
-  border-top-right-radius: 10rem;
-  border-bottom-left-radius: 5rem;
-  border-bottom-right-radius: 5rem;
+  border-radius: 5rem;
   border: 10rem solid rgb(0, 169, 152);
   border-width: 2rem;
   background-color: white;
   padding: 1rem;
 }
 
-img {
-  border-radius: 1rem;
-  transform: scale(0.85, 0.85);
-  border: 5px solid white;
-  margin: 0%;
-  padding: 0;
+ul.petInteractions {
+  margin: 2rem 1rem 3rem 1rem;
+  height: 38rem;
+  width: 74vw;
+  min-width: 18.5rem;
+  border-top-left-radius: 5rem;
+  border-top-right-radius: 5rem;
+  border-bottom-left-radius: 5rem;
+  border-bottom-right-radius: 5rem;
+  border: 10rem solid rgb(0, 169, 152);
+  border-width: 2rem;
+  background-color: white;
+  padding: 0.5rem;
 }
 
 ul.graveyardPlot {
@@ -353,9 +391,6 @@ ul.graveyardPlot {
 .petPage li {
   display: flex;
   flex-direction: column;
-  // border-radius: 5rem;
-  // background-color: rgb(255, 43, 110);
-  // color: white;
   padding-bottom: 1rem;
   border: 0;
   margin: 0.5rem;
@@ -368,44 +403,73 @@ ul.graveyardPlot {
 
 li.interactions {
   display: flex;
-  background-color: rgb(0, 169, 152);
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  border-radius: 4rem;
-  padding: 1rem;
-  margin: 1rem 0rem 2.5rem 0rem;
+  border-radius: 2.5rem;
+  padding: 0rem;
+  margin: 0rem;
 }
 
-li.rename {
-  // margin-top: 10rem;
-  // padding: 10rem;
+button.delete {
+  margin-bottom: 0.25rem;
 }
-li.delete {
-  // margin-bottom: 0rem;
-  padding: 0rem;
-}
+
 button.petPageToHome {
   width: 100vw;
   margin-bottom: 0rem;
   border-radius: 0%;
 }
-button.petPage:hover {
-  transform: scale(1.25, 1.25);
-}
-// .petPage li {
-//   margin: 1.5rem;
-//   padding: 0rem;
-//   //   margin: 1.5rem 2.5rem 1rem 2.5rem;
-//   //   padding: 1.5rem 2.5rem 1rem 2.5rem;
-// }
-// background-color: rgb(74, 185, 168, 255); teal
-// background-color: rgb(24, 127, 196, 255 ); blue
-// background-color: rgb(235, 80, 129, 255); pink
-// background-color: rgb(132, 91, 165, 255 purple)
 
-@media all and (min-width: 700px) {
+.graveyardtoHome {
+  padding: 0.5rem;
+  margin: 3rem 0rem 0rem 0rem;
+  text-align: center;
+  width: 100vw;
+  border-radius: 0%;
+}
+
+.graveyardtoHome:hover {
+  transform: scale(1.15, 1.15);
+  border-radius: 0%;
+}
+
+footer {
+  margin-top: auto;
+  margin-bottom: 0%;
+  padding: 0%;
+}
+
+.graveyardFooter {
+  background-color: green;
+}
+
+// -------------------------------------------------- //
+
+@media all and (min-width: 728px) {
   ul.petPage {
-    width: 47.5vw;
+    margin: 2rem 0.75rem 3rem 0.75rem;
+    min-width: 19.5rem;
+    width: 35vw;
+  }
+
+  ul.petInteractions {
+    margin: 2rem 0.75rem 3rem 0.75rem;
+    width: 35vw;
+    min-width: 19.5rem;
+  }
+}
+
+@media all and (min-width: 1000px) {
+  ul.petPage {
+    margin: 2rem 1.75rem 3rem 1.75rem;
+    min-width: 18.5rem;
+    width: 37.5vw;
+  }
+
+  ul.petInteractions {
+    margin: 2rem 1.75rem 3rem 1.75rem;
+    width: 37.5vw;
+    min-width: 18.5rem;
   }
 }

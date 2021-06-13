@@ -10,12 +10,15 @@
 <!-- -spacing on pet page -->
 <!-- -margins on headstones -->
 
-- stop footer from climbing on all pages with extreme zoom out
+<!-- - stop footer from climbing on all pages with extreme zoom out -->
 
-- connect to an API to get random pictures and display in pet pages, as opposed to stock
-  imagery
+<!-- DONE -->
 
-- add media queries to make all pages extremely responsive
+- connect to an API to get random pictures and display in pet pages, as opposed to stock imagery
+
+<!-- - add media queries to make all pages extremely responsive -->
+
+- add media queries for pet page to adjust size of text and buttons
 
 <!-- - should add some styling so the user knows how the list is being sorted, possibly by changing the font color of active buttons -
 --fix color change resets -->

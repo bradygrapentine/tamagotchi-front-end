@@ -40,7 +40,9 @@ export function Graveyard() {
         </p>
         {/* <p className="clouds">☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️</p> */}
       </header>
-      {deadPets.length !== 0 ? (
+      {deadPets.length === 0 ? (
+        <p>Loading...</p>
+      ) : (
         <article className="graveyardPlot">
           <ul className="graveyardPlot">
             {[...deadPets]
@@ -63,16 +65,14 @@ export function Graveyard() {
                 )
               })}
           </ul>
-          <Link to="/">
-            {' '}
-            <button className="graveyardtoHome">
-              Click to Run From Guilt{' '}
-            </button>
-          </Link>
         </article>
-      ) : (
-        <p>Loading...</p>
       )}
+      <footer className="graveyardFooter">
+        <Link to="/">
+          {' '}
+          <button className="graveyardtoHome">Click to Run From Guilt </button>
+        </Link>
+      </footer>
     </>
   )
 }

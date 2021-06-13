@@ -11,6 +11,7 @@ export function PetList() {
   const [hungerActive, setHungerActive] = useState(false)
   const [happinessActive, setHappinessActive] = useState(false)
   const [reverseActive, setReverseActive] = useState(false)
+  const [bdayActive, setBdayActive] = useState(true)
 
   async function loadPets() {
     const response = await axios.get(
@@ -21,12 +22,13 @@ export function PetList() {
     }
   }
 
-  function resetSort() {
+  function byBirthday() {
     loadPets()
     setNameActive(false)
     setHungerActive(false)
     setHappinessActive(false)
     setReverseActive(false)
+    setBdayActive(true)
   }
 
   function reverseOrder() {
@@ -45,6 +47,7 @@ export function PetList() {
     setHungerActive(false)
     setHappinessActive(false)
     setReverseActive(false)
+    setBdayActive(false)
   }
   function sortByHappinessLevel() {
     const newPets = [...pets].sort(
@@ -56,6 +59,7 @@ export function PetList() {
     setHungerActive(false)
     setHappinessActive(true)
     setReverseActive(false)
+    setBdayActive(false)
   }
   function sortByHungerLevel() {
     const newPets = [...pets].sort(
@@ -67,6 +71,7 @@ export function PetList() {
     setHungerActive(true)
     setHappinessActive(false)
     setReverseActive(false)
+    setBdayActive(false)
   }
 
   async function createPet(event) {
@@ -149,13 +154,16 @@ export function PetList() {
                   By Happiness
                 </button>
                 <button
+                  className={bdayActive ? 'sortButton active' : 'sortButton'}
+                  onClick={byBirthday}
+                >
+                  By Birthday
+                </button>
+                <button
                   className={reverseActive ? 'sortButton active' : 'sortButton'}
                   onClick={reverseOrder}
                 >
                   Reverse Order
-                </button>
-                <button className="sortButton" onClick={resetSort}>
-                  Reset
                 </button>
               </ul>
             )}
@@ -168,40 +176,39 @@ export function PetList() {
                   <Link to={`/${pet.id}`}>
                     <li className="petList">
                       <div className="petList">
-                        <p className="petListName">
+                        <div className="petListName">
                           Name: <p>{pet.name}</p>
-                        </p>
-                        <p className="petListBday">
+                        </div>
+                        <div className="listItem">
                           Birthday:{' '}
                           <p>
                             {Intl.DateTimeFormat('en-US').format(
                               Date.parse(pet.birthday)
                             )}
                           </p>
-                        </p>
-                        <p className="petList Item Hunger">
+                        </div>
+                        <div className="listItem">
                           Hunger Level: <p>{pet.hungerLevel}</p>
-                        </p>
-                        <p className="petList Item Happiness">
+                        </div>
+                        <div className="listItem">
                           Happiness Level: <p>{pet.happinessLevel}</p>
-                        </p>
-                        <Link to={`/${pet.id}`}>
-                          {' '}
-                          <button className="petList Item Interact">
-                            Interact with {pet.name}
-                          </button>
-                        </Link>
+                        </div>{' '}
+                        <button className="listItem">
+                          Interact with {pet.name}
+                        </button>
                       </div>
                     </li>
                   </Link>
                 )
               })}
           </ul>
-          <Link to="/graveyard">
-            <button className="visitGraveyard">Visit Graveyard</button>
-          </Link>
         </>
       )}
+      <footer>
+        <Link to="/graveyard">
+          <button className="visitGraveyard">Visit Graveyard</button>
+        </Link>
+      </footer>
     </>
   )
 }
