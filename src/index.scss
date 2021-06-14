@@ -469,13 +469,15 @@ footer {
 
 @media all and (min-width: 750px) {
   ul.petPage {
-    margin: 2rem 0.5rem 3rem 0.5rem;
+    // margin: 2rem 0.5rem 3rem 0.5rem;
+    margin: 2rem 1.125rem 3rem 1.125rem;
+
     min-width: 19.5rem;
-    width: 30vw;
+    width: 35vw;
   }
 
   ul.petInteractions {
-    margin: 2rem 0.5rem 3rem 0.5rem;
+    margin: 2rem 1.125rem 3rem 1.125rem;
     width: 35vw;
     min-width: 19.5rem;
   }
