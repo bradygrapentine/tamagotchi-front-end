@@ -94,12 +94,17 @@ export function PetPage() {
   }
 
   function formatDate(dateAsString) {
-    let truncDate = dateAsString.slice(0, 10).split('-').reverse()
-    let [day, month, year] = truncDate
-    day = day[0] === '0' ? (day = day[1]) : (day = day)
-    let dateString = [month, day, year].join('/')
-    dateString = dateString[0] === '0' ? dateString.slice(1, 10) : dateString
-    return dateString
+    let date = Date.parse(dateAsString + '+04:00')
+    // let newOptions = {
+    //   weekday: 'long',
+    //   year: 'numeric',
+    //   month: 'long',
+    //   day: 'numeric',
+    // }
+    let formattedDate = Intl.DateTimeFormat('en-US', {
+      dateStyle: 'full',
+    }).format(date)
+    return formattedDate
   }
 
   useEffect(() => {
@@ -167,7 +172,7 @@ export function PetPage() {
                   >
                     <img
                       src="https://placekeanu.com/240/280/y"
-                      alt="No Image Available"
+                      alt="Image Unavailable"
                     />
                   </a>
                   <button className="play" onClick={playWithPet}>

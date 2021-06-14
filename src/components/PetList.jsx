@@ -74,9 +74,22 @@ export function PetList() {
     setBdayActive(false)
   }
 
+  function formatDate(dateAsString) {
+    let date = Date.parse(dateAsString + '+04:00')
+    let formattedDate = Intl.DateTimeFormat('en-US').format(date)
+    return formattedDate
+  }
+  //   let truncDate = dateAsString.slice(0, 10).split('-').reverse()
+  //   let [day, month, year] = truncDate
+  //   day = day[0] === '0' ? (day = day[1]) : (day = day)
+  //   let dateString = [month, day, year].join('/')
+  //   dateString = dateString[0] === '0' ? dateString.slice(1, 10) : dateString
+  //   return dateString
+  // }
+
   async function createPet(event) {
-    if (newName.length < 19) {
-      event.preventDefault()
+    event.preventDefault()
+    if (newName.length < 19 && newName.length > 0) {
       const response = await axios.post(
         'https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets',
         { name: newName }
@@ -170,7 +183,9 @@ export function PetList() {
           </button>
           <ul className="petList">
             {pets
-              .filter(pet => pet.name.toLowerCase().includes(newSearch))
+              .filter(pet =>
+                pet.name.toLowerCase().includes(newSearch.toLowerCase())
+              )
               .map(function (pet) {
                 return (
                   <Link to={`/${pet.id}`}>
@@ -180,12 +195,7 @@ export function PetList() {
                           Name: <p>{pet.name}</p>
                         </div>
                         <div className="listItem">
-                          Birthday:{' '}
-                          <p>
-                            {Intl.DateTimeFormat('en-US').format(
-                              Date.parse(pet.birthday)
-                            )}
-                          </p>
+                          Birthday: <p>{formatDate(pet.birthday)}</p>
                         </div>
                         <div className="listItem">
                           Hunger Level: <p>{pet.hungerLevel}</p>
