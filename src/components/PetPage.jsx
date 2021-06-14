@@ -89,7 +89,6 @@ export function PetPage() {
     )
     if (response.status == 200) {
       setPet(response.data)
-      console.log(response.data)
     }
   }
 

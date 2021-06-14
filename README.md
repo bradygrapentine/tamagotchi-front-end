@@ -14,6 +14,8 @@
 
 <!-- DONE -->
 
+- add local storage option to take user to last pet page they visited and last sort option for main page
+
 - connect to an API to get random pictures and display in pet pages, as opposed to stock imagery
 
 <!-- - add media queries to make all pages extremely responsive -->

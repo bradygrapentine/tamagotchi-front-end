@@ -10,10 +10,6 @@ export function Graveyard() {
       'https://tamagotchi-api-bradygrapentine.herokuapp.com/api/Pets?graveyard=true'
     )
     if (response.status == 200) {
-      console.log(response.data)
-      response.data.sort((petA, petB) =>
-        petA.name.toLowerCase().localeCompare(petB.name.toLowerCase())
-      )
       setDeadPets(response.data)
     }
   }
@@ -38,7 +34,6 @@ export function Graveyard() {
           ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️
           ☁️ ☁️ ☁️ ☁️ ☁️ ☁️
         </p>
-        {/* <p className="clouds">☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️ ☁️</p> */}
       </header>
       {deadPets.length === 0 ? (
         <p>Loading...</p>
@@ -54,12 +49,10 @@ export function Graveyard() {
                   <li className="headStone">
                     <div>
                       <p className="engraving">Name: {deadPet.name}</p>
-                      {/* <p>Birthday: {deadPet.birthday}</p> */}
                       <p className="engraving">
                         Cause of Death:{' '}
                         {deadPet.hungerLevel >= 15 ? 'Hunger' : 'Negligence'}
                       </p>
-                      {/* <p>Last Day: </p> */}
                     </div>
                   </li>
                 )
