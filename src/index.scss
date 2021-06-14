@@ -124,7 +124,7 @@ li {
 .sortButton {
   border: 0;
   padding: 0.5rem 0.25rem 0.5rem 0.5rem;
-  background-color: rgb(0, 169, 152);
+  background-color: rgb(0, 204, 184);
   color: black;
 }
 
@@ -330,10 +330,12 @@ div {
 ul.petPage {
   .item {
     padding: 0.125rem 0.125rem 0.125rem 0.5rem;
-    border: 0;
+    border: 3px solid rgb(255, 43, 110);
     margin: 0rem;
-    background-color: black;
-    color: white;
+    // background-color: black;
+    // color: white;
+    background-color: rgb(0, 204, 184);
+    color: black;
     border-radius: 0.45rem;
     width: auto;
     display: flex;
@@ -344,12 +346,16 @@ ul.petPage {
   margin: 2rem 1rem 3rem 1rem;
   min-width: 18.5rem;
   width: 74vw;
-  height: 38rem;
+  height: 39rem;
   border-radius: 5rem;
   border: 10rem solid rgb(0, 169, 152);
   border-width: 2rem;
   background-color: white;
-  padding: 0.5rem;
+  padding: 0rem 0.25rem;
+}
+
+.deathMessage {
+  margin: 2.5rem 2rem 0rem 2rem;
 }
 
 ul.deleteAndRename {
@@ -405,7 +411,7 @@ ul.graveyardPlot {
 .petPage li {
   display: flex;
   flex-direction: column;
-  padding-bottom: 1rem;
+  padding-bottom: 0rem;
   border: 0;
   margin: 0.5rem;
   p {
@@ -473,6 +479,10 @@ footer {
     width: 35vw;
     min-width: 19.5rem;
   }
+  .deathMessage {
+    width: 60vw;
+    min-width: 19.5rem;
+  }
 }
 
 @media all and (min-width: 1000px) {
@@ -485,6 +495,11 @@ footer {
   ul.petInteractions {
     margin: 2rem 1.75rem 3rem 1.75rem;
     width: 37.5vw;
+    min-width: 18.5rem;
+  }
+
+  .deathMessage {
+    width: 60vw;
     min-width: 18.5rem;
   }
 }

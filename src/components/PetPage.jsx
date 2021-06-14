@@ -138,7 +138,7 @@ export function PetPage() {
           </ul>
           <div className="petPage">
             {pet.isDead ? (
-              <p>
+              <p className="deathMessage">
                 Well then...just because they're made of data, doesn't mean they
                 don't need to eat...
               </p>
