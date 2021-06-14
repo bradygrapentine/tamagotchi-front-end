@@ -14,6 +14,8 @@
 
 <!-- DONE -->
 
+- get footer to display completely (fixed to bottom) on loading page
+
 - connect to an API to get random pictures and display in pet pages, as opposed to stock imagery
 
 <!-- - add media queries to make all pages extremely responsive -->
