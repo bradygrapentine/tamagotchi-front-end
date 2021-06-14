@@ -125,6 +125,7 @@ li {
   border: 0;
   padding: 0.5rem 0.25rem 0.5rem 0.5rem;
   background-color: rgb(0, 169, 152);
+  color: black;
 }
 
 .active {
@@ -147,7 +148,7 @@ li.petList {
   flex-direction: column;
   justify-content: center;
   align-content: space-between;
-  margin: 1.5rem;
+  margin: 1.5rem 0.375rem;
   padding: 0.5rem;
   width: 19.9rem;
   height: 26rem;
@@ -256,7 +257,7 @@ label {
   padding: 0.5rem 0.25rem 0.5rem 0.75rem;
   margin: 0rem;
   border-radius: 5rem;
-  background-color: rgb(0, 169, 152);
+  background-color: rgb(255, 43, 110);
   font-weight: 600;
 }
 form {
@@ -327,7 +328,20 @@ div {
 }
 
 ul.petPage {
-  margin: 2rem 1rem 1rem 1rem;
+  .item {
+    padding: 0.125rem 0.125rem 0.125rem 0.5rem;
+    border: 0;
+    margin: 0rem;
+    background-color: black;
+    color: white;
+    border-radius: 0.45rem;
+    width: auto;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+  margin: 2rem 1rem 3rem 1rem;
   min-width: 18.5rem;
   width: 74vw;
   height: 38rem;
@@ -350,7 +364,7 @@ ul.deleteAndRename {
 }
 
 ul.petInteractions {
-  margin: 2rem 1rem 3rem 1rem;
+  margin: 3rem 1rem 1rem 1rem;
   height: 38rem;
   width: 74vw;
   min-width: 18.5rem;
@@ -447,15 +461,15 @@ footer {
 
 // -------------------------------------------------- //
 
-@media all and (min-width: 728px) {
+@media all and (min-width: 750px) {
   ul.petPage {
-    margin: 2rem 0.75rem 3rem 0.75rem;
+    margin: 2rem 0.5rem 3rem 0.5rem;
     min-width: 19.5rem;
-    width: 35vw;
+    width: 30vw;
   }
 
   ul.petInteractions {
-    margin: 2rem 0.75rem 3rem 0.75rem;
+    margin: 2rem 0.5rem 3rem 0.5rem;
     width: 35vw;
     min-width: 19.5rem;
   }

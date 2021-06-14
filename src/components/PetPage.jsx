@@ -137,27 +137,6 @@ export function PetPage() {
             </button>
           </ul>
           <div className="petPage">
-            <ul className="petPage">
-              <li className="name">
-                Name: <p>{pet.name}</p>
-              </li>
-              <li className="bday">
-                Birthday: <p>{formatDate(pet.birthday)}</p>
-              </li>
-              <li className="hunger">
-                Hunger Level: <p>{pet.hungerLevel}</p>
-              </li>
-              <li className="happiness">
-                Happiness Level: <p>{pet.happinessLevel}</p>
-              </li>
-              <li className="isDead">
-                Status: <p>{pet.isDead ? 'Dead' : 'Alive'}</p>
-              </li>
-              <li className="lastInteraction">
-                Last Interaction:{' '}
-                <p>{formatDate(pet.lastInteractedWithDate)}</p>
-              </li>
-            </ul>
             {pet.isDead ? (
               <p>
                 Well then...just because they're made of data, doesn't mean they
@@ -187,6 +166,30 @@ export function PetPage() {
                 </li>
               </ul>
             )}
+            <ul className="petPage">
+              <li className="name">
+                <p className="item">Name:</p> <p>{pet.name}</p>
+              </li>
+              <li className="bday">
+                <p className="item">Birthday:</p>{' '}
+                <p>{formatDate(pet.birthday)}</p>
+              </li>
+              <li className="hunger">
+                <p className="item">Hunger Level:</p> <p>{pet.hungerLevel}</p>
+              </li>
+              <li className="happiness">
+                <p className="item">Happiness Level:</p>{' '}
+                <p>{pet.happinessLevel}</p>
+              </li>
+              <li className="isDead">
+                <p className="item">Status:</p>{' '}
+                <p>{pet.isDead ? 'Dead' : 'Alive'}</p>
+              </li>
+              <li className="lastInteraction">
+                <p className="item">Last Interaction:</p>{' '}
+                <p>{formatDate(pet.lastInteractedWithDate)}</p>
+              </li>
+            </ul>
           </div>
         </>
       )}
