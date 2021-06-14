@@ -22,8 +22,6 @@
 
 - connect to an API to get random pictures and display in pet pages, as opposed to stock imagery
 
-- add some fancy styling like shadows and gradients (maybe)
-
 - add sound effects when interacting with pet, when pet dies, and when pet created
 
 - add media queries for pet page to adjust size of text and buttons
