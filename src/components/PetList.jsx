@@ -85,6 +85,7 @@ export function PetList() {
   // }
 
   async function createPet(event) {
+    // put set timeout in this fn
     event.preventDefault()
     if (newName.length < 19 && newName.length > 0) {
       const response = await axios.post(
@@ -129,7 +130,7 @@ export function PetList() {
             <input
               className="filterByName"
               type="text"
-              placeholder="Enter Name"
+              // placeholder="Enter Name"
               value={newSearch}
               onChange={event => {
                 setNewSearch(event.target.value)

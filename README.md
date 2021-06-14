@@ -14,13 +14,29 @@
 
 <!-- DONE -->
 
-- add local storage option to take user to last pet page they visited and last sort option for main page
+- add local storage option to take user to last pet page they visited
+
+- add session storage for last sort option on main page
+
+- add set timout where needed in input boxes
 
 - connect to an API to get random pictures and display in pet pages, as opposed to stock imagery
 
-<!-- - add media queries to make all pages extremely responsive -->
+- add some fancy styling like shadows and gradients (maybe)
+
+- add sound effects when interacting with pet, when pet dies, and when pet created
 
 - add media queries for pet page to adjust size of text and buttons
+
+- add death date to API and adjust headstones to include birthday - death date
+
+- update hunger on a daily basis in API
+
+- DRY process with JS
+
+- clean up css, add nesting (and class structure to html)
+
+<!-- - add media queries to make all pages extremely responsive -->
 
 <!-- - should add some styling so the user knows how the list is being sorted, possibly by changing the font color of active buttons -
 --fix color change resets -->
@@ -31,14 +47,9 @@
 
 <!-- DONE -->
 
-- add death date to API and adjust headstones to include birthday - death date
-
 <!-- - work on contrasting make buttons a darker pink and boxes around white text darker teal to improve contrast, make p text darker as well -->
 
 <!-- DONE -->
-
-- DRY process with JS
-- clean up css
 
     <!-- - Once you have successfully deployed your application: Use the Insomnia app to work with your API. At a minimum, use your API endpoints to create and list your Pets
 

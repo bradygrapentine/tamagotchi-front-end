@@ -62,6 +62,7 @@ export function PetPage() {
     }
   }
   async function renamePet(event) {
+    // put set timeout in this fn
     event.preventDefault()
     if (!pet.isDead) {
       const response = await axios.put(
