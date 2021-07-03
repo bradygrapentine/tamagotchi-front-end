@@ -8,7 +8,11 @@
 
 I built this application as part of my course work at Suncoast Developers Guild. It relies on my TamagotchiAPI, which I've pinned as well. It was really rewarding to use everything we learned about the front end and an application we'd previously built during the back-end unit to build something fun.
 
-Enjoy! And be nice to your ~ katagotchis ~! They get lonely and hungry...
+Enjoy!
+
+And be nice to your ~ katagotchis ~
+
+They get lonely and hungry...
 
 <!-- - Add some new fields to your pet. Perhaps a string-based URL of an image of the pet to display beside its name. ->> daily kitteh API
 - placeholder Keanu worked nicely -->
