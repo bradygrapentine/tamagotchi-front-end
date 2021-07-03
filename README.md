@@ -1,8 +1,6 @@
 # Tamagotchi Front End
 
-# QueryDash
-
-## https://querydash.herokuapp.com/
+## https://tamagotchi-front-end-bgrap.netlify.app/
 
 ![](./src/images/CaptureTamagotchi.PNG)
 
