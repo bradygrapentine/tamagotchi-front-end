@@ -52,8 +52,8 @@
 <!-- - work on contrasting make buttons a darker pink and boxes around white text darker teal to improve contrast, make p text darker as well -->
 
 <!-- DONE -->
-
-    <!-- - Once you have successfully deployed your application: Use the Insomnia app to work with your API. At a minimum, use your API endpoints to create and list your Pets
+<!--
+    <!-- - Once you have successfully deployed your application: Use the Insomnia app to work with your API. At a minimum, use your API endpoints to create and list your Pets -->
 
 <!-- Explorer Mode --
 
@@ -237,4 +237,4 @@ Body: {"id": 14,"name": "Stevie"}
         {
             return $"{Id}: Name ~ {Name} Happiness Level ~ {HappinessLevel} Hunger Level ~ {HungerLevel} Birthday ~ {Birthday} Last Interaction Date ~ {LastInteractedWithDate} Dead? ~ {IsDead}";
         }
-    } --> -->
+    } -->
