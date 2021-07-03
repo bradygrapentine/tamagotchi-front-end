@@ -1,6 +1,10 @@
 # Tamagotchi Front End
 
-![SDG](./docs/button.png)
+# QueryDash
+
+## https://querydash.herokuapp.com/
+
+![](./src/images/CaptureTamagotchi.PNG)
 
 <!-- - Add some new fields to your pet. Perhaps a string-based URL of an image of the pet to display beside its name. ->> daily kitteh API
 - placeholder Keanu worked nicely -->
@@ -13,7 +17,7 @@
 <!-- - stop footer from climbing on all pages with extreme zoom out -->
 
 <!-- DONE -->
-
+<!--
 - add local storage option to take user to last pet page they visited
 
 - add session storage for last sort option on main page
@@ -233,4 +237,4 @@ Body: {"id": 14,"name": "Stevie"}
         {
             return $"{Id}: Name ~ {Name} Happiness Level ~ {HappinessLevel} Hunger Level ~ {HungerLevel} Birthday ~ {Birthday} Last Interaction Date ~ {LastInteractedWithDate} Dead? ~ {IsDead}";
         }
-    } -->
+    } --> -->
