@@ -2,7 +2,9 @@
 
 ![](./src/images/CaptureTamagotchi.PNG)
 
-I built this application as part of my course work at Suncoast Developers Guild. It relies on my TamagotchiAPI, which I've pinned as well. It was really rewarding to use everything we learned about the front end and an application we'd previously built during the back-end unit to build something fun.
+I built this application using Javascript and React Hooks as part of my course work at Suncoast Developers Guild.
+
+It relies on my TamagotchiAPI, which I've pinned as well. It was really rewarding to use everything we learned about the front end and an application we'd previously built during the back-end unit to build something fun.
 
 Enjoy!
 
