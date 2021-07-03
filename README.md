@@ -1,6 +1,4 @@
-# Tamagotchi Front End
-
-## https://tamagotchi-front-end-bgrap.netlify.app/
+# [Tamagotchi Front End](https://tamagotchi-front-end-bgrap.netlify.app/)
 
 ![](./src/images/CaptureTamagotchi.PNG)
 
